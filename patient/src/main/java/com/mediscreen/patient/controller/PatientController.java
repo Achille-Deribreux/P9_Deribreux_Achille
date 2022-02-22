@@ -9,10 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -62,8 +64,8 @@ public class PatientController {
      * @param patient patient that you want to add
      * @return the added patient (with id) and status code 201 if everything is ok
      */
-    @PostMapping("/add")
-    public ResponseEntity<Patient> addPatient(@RequestBody PatientDTO patient){
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> addPatient( PatientDTO patient) throws ParseException {
         logger.info("post request received at /patients/add, call patient service to add patient for name : "+patient.getGiven()+" "+patient.getFamily());
         Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
         return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
@@ -75,7 +77,7 @@ public class PatientController {
      * @return the updated patient and status code 201 if everything is ok
      */
     @PutMapping("/update")
-    public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient){
+    public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient) throws ParseException {
         logger.info("put request received at /patients/update, call patient service to update patient for name : "+patient.getGiven()+" "+patient.getFamily());
         if(patient.getId() == null){
             logger.error("impossible to update, no id for patient : "+patient.getGiven()+" "+patient.getFamily());

@@ -1,14 +1,12 @@
 package com.mediscreen.patient.dto;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 public class PatientDTO {
     private Integer id;
     private String given;
     private String family;
-    private Date dob;
+    private String dob;
     private String sex;
     private String address;
     private String phone;
@@ -16,7 +14,7 @@ public class PatientDTO {
     public PatientDTO() {
     }
 
-    public PatientDTO(String given, String family, Date dob, String sex, String address, String phone) {
+    public PatientDTO(String given, String family, String dob, String sex, String address, String phone) {
         this.given = given;
         this.family = family;
         this.dob = dob;
@@ -25,7 +23,7 @@ public class PatientDTO {
         this.phone = phone;
     }
 
-    public PatientDTO(Integer id, String given, String family, Date dob, String sex, String address, String phone) {
+    public PatientDTO(Integer id, String given, String family, String dob, String sex, String address, String phone) {
         this.id = id;
         this.given = given;
         this.family = family;
@@ -59,11 +57,11 @@ public class PatientDTO {
         this.family = family;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
