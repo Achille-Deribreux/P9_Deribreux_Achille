@@ -1,8 +1,10 @@
 package com.mediscreen.patient.controller;
 
+import com.mediscreen.patient.dto.PatientDTO;
 import com.mediscreen.patient.exception.customexceptions.MissingIdException;
 import com.mediscreen.patient.model.Patient;
 import com.mediscreen.patient.service.PatientService;
+import com.mediscreen.patient.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,16 +38,18 @@ public class PatientController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient){
-        return new ResponseEntity<>(patientService.addPatient(patient),HttpStatus.CREATED);
+    public ResponseEntity<Patient> addPatient(@RequestBody PatientDTO patient){
+        Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
+        return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient){
+    public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient){
         if(patient.getId() == null){
             throw new MissingIdException();
         }
-        return new ResponseEntity<>(patientService.updatePatient(patient),HttpStatus.CREATED);
+        Patient patientToUpdate = Mapper.mapPatientDtoToPatient(patient);
+        return new ResponseEntity<>(patientService.updatePatient(patientToUpdate),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")
