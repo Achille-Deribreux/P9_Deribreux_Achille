@@ -2,6 +2,7 @@ package com.mediscreen.patient.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Table(name = "patients")
 @Entity
@@ -19,7 +20,7 @@ public class Patient {
     private String familyName;
 
     @Column(name = "birth_date")
-    private LocalDate birthdate;
+    private Date birthdate;
 
     @Column(name="gender")
     private String sex;
@@ -33,7 +34,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String givenName, String familyName, LocalDate birthdate, String sex, String address, String phoneNumber) {
+    public Patient(String givenName, String familyName, Date birthdate, String sex, String address, String phoneNumber) {
         this.givenName = givenName;
         this.familyName = familyName;
         this.birthdate = birthdate;
@@ -68,11 +69,11 @@ public class Patient {
         this.familyName = familyName;
     }
 
-    public LocalDate getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 

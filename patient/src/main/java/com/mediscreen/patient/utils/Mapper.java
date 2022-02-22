@@ -21,4 +21,18 @@ public class Mapper {
         patient.setPhoneNumber(patientDTO.getPhone());
         return patient;
     }
+
+    public static PatientDTO mapPatientDTOToPatient(Patient patient){
+        PatientDTO patientDTO = new PatientDTO();
+        if(patient.getId() != null){
+            patientDTO.setId(patient.getId());
+        }
+        patientDTO.setGiven(patient.getGivenName());
+        patientDTO.setFamily(patient.getFamilyName());
+        patientDTO.setAddress(patient.getAddress());
+        patientDTO.setDob(patient.getBirthdate());
+        patientDTO.setPhone(patient.getPhoneNumber());
+        patientDTO.setSex(patient.getSex());
+        return patientDTO;
+    }
 }

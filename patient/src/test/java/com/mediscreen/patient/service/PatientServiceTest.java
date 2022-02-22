@@ -84,8 +84,6 @@ class PatientServiceTest {
     @Test
     void addPatientTest() {
         //Given
-        String givenName = "Achille";
-        String familyName = "Deribreux";
         Patient patientToAdd = TestData.getPatientOne();
         //When
         patientService.addPatient(patientToAdd);

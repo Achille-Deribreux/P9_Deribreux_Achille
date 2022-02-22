@@ -17,8 +17,6 @@ import java.util.List;
 @RequestMapping("/patient")
 public class PatientController {
 
-    //TODO CHANGE PATIENT IN DTO
-
     @Autowired
     private PatientService patientService;
 
