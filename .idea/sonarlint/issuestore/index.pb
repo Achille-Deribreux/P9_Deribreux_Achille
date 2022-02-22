@@ -11,7 +11,5 @@ Mpatient/src/main/java/com/mediscreen/patient/exception/ExceptionsHandler.java,
 Opatient/src/main/java/com/mediscreen/patient/exception/CustomErrorResponse.java,a/4/a481ad7903ef020229d18547ae21c9d45388c05e
 ™
 ipatient/src/main/java/com/mediscreen/patient/exception/customexceptions/PatientAlreadyExistException.java,4/9/4916c6a89918a038f2f6be2b2a14486c4d4c7cc4
-x
-Hpatient/src/main/java/com/mediscreen/patient/service/PatientService.java,9/2/92803fc8965d904179afe4767b21afadbd0b1f12
 t
 Dpatient/src/main/java/com/mediscreen/patient/PatientApplication.java,1/f/1f265ae8034f08c8bbc9d175b1857da1e854ba26
