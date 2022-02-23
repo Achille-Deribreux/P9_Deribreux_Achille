@@ -23,6 +23,7 @@ public class Patient {
     @Column(name = "birth_date")
     private Date birthdate;
 
+    //TODO SET ENUM FOR SEX
     @Column(name="gender")
     private String sex;
 
