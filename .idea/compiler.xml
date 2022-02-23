@@ -7,14 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="patient" />
+        <module name="notes" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="notes" target="11" />
       <module name="patient" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="notes" options="-parameters" />
       <module name="patient" options="-parameters" />
     </option>
   </component>
