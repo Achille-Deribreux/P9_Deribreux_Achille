@@ -69,6 +69,7 @@ public class PatientController {
         logger.info("post request received at /patients/add, call patient service to add patient for name : "+patient.getGiven()+" "+patient.getFamily());
         Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
         return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
+        //TODO ACCEPT JSON ALSO AND PUT THE SAME FOR UPDATE METHOD
     }
 
     /**
