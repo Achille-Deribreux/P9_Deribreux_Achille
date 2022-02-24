@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -59,9 +60,8 @@ public class NoteController {
      * @param note note that you want to add
      * @return the added note (with id) and status code 201 if everything is ok
      */
-    @PostMapping("/add")
+    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Note> addNote(@RequestBody Note note){
-        //TODO ACCEPT JSON & URL ENCODED
         logger.info("post request received at /note/add, call note service to add note for patient id : {}",note.getPatientId());
         return new ResponseEntity<>(noteService.addNote(note),HttpStatus.CREATED);
     }
@@ -71,7 +71,7 @@ public class NoteController {
      * @param note note that you want to update (with id)
      * @return the updated note and status code 201 if everything is ok
      */
-    @PutMapping("/update")
+    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Note> updateNote(@RequestBody Note note){
         logger.info("post request received at /note/update, call note service to update note with id : {}",note.getId());
         if(note.getId() == null){

@@ -64,7 +64,7 @@ public class PatientController {
      * @param patient patient that you want to add
      * @return the added patient (with id) and status code 201 if everything is ok
      */
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Patient> addPatient( PatientDTO patient) throws ParseException {
         logger.info("post request received at /patients/add, call patient service to add patient for name : {} {}",patient.getGiven(),patient.getFamily());
         Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
@@ -77,7 +77,7 @@ public class PatientController {
      * @param patient patient that you want to update (with id)
      * @return the updated patient and status code 201 if everything is ok
      */
-    @PutMapping("/update")
+    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient) throws ParseException {
         logger.info("put request received at /patients/update, call patient service to update patient for name : {} {}",patient.getGiven(),patient.getFamily());
         if(patient.getId() == null){
