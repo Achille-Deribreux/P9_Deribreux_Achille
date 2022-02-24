@@ -49,7 +49,7 @@ class PatientControllerTest {
     @Test
     void addPatientTest() throws Exception {
         //Given
-        PatientDTO patientToAdd = Mapper.mapPatientDTOToPatient(TestData.getPatientOne());
+        PatientDTO patientToAdd = Mapper.mapPatientDtoToPatient(TestData.getPatientOne());
         //When
         Mockito.when(patientService.addPatient(TestData.getPatientOne())).thenReturn(TestData.getPatientOne());
         //Then
@@ -61,7 +61,7 @@ class PatientControllerTest {
         //Given
         Patient patient = TestData.getPatientOne();
         patient.setId(1);
-        PatientDTO patientToUpdate = Mapper.mapPatientDTOToPatient(patient);
+        PatientDTO patientToUpdate = Mapper.mapPatientDtoToPatient(patient);
         //When
         Mockito.when(patientService.updatePatient(patient)).thenReturn(patient);
         //Then

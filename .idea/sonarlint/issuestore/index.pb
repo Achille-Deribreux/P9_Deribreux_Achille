@@ -26,13 +26,9 @@ q
 Apatient/src/test/java/com/mediscreen/patient/utils/Converter.java,3/1/314f33f26dae0d8c6bfee2e8a7f324c938d6996b
 y
 Ipatient/src/test/java/com/mediscreen/patient/PatientApplicationTests.java,f/a/fa7cb0b46b6597e41e37f396491862a52e689159
-~
-Npatient/src/main/java/com/mediscreen/patient/controller/PatientController.java,6/d/6dcfe17abaebfde606565763e681b36885caa1b4
 @
 notes/.gitignore,8/8/884088274d82b9346ef6e3612bd1588d265d6862
-p
-@patient/src/main/java/com/mediscreen/patient/dto/PatientDTO.java,3/d/3d39e7e8597dce2b4e865e6ddc1eb231855a4c20
-n
->patient/src/main/java/com/mediscreen/patient/utils/Mapper.java,b/b/bb584bc640482d595126b47fa42cf44013b7da39
 t
 Dpatient/src/main/java/com/mediscreen/patient/PatientApplication.java,1/f/1f265ae8034f08c8bbc9d175b1857da1e854ba26
+}
+Mpatient/src/main/java/com/mediscreen/patient/exception/ExceptionsHandler.java,1/e/1ef71dbc32113d3d1bb74c98973e57b63edf8f9a

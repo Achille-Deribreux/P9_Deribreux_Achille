@@ -37,7 +37,7 @@ public class PatientService {
      * @return the wanted patient
      */
     public Patient getPatientById(Integer id){
-        logger.info("search for patient : "+ id);
+        logger.info("search for patient : {} ", id);
         return patientsRepository.findById(id).orElseThrow(()->new PatientNotFoundException("id : "+id));
     }
 
@@ -48,7 +48,7 @@ public class PatientService {
      * @return the wanted patient
      */
     public Patient getPatientByName(String givenName, String familyName){
-        logger.info("search for patient :" +givenName+" "+familyName);
+        logger.info("search for patient : {} {}",givenName,familyName);
         return patientsRepository.findByGivenNameAndFamilyName(givenName,familyName).orElseThrow(()-> new PatientNotFoundException("name : "+givenName+" "+familyName));
     }
 
@@ -59,11 +59,11 @@ public class PatientService {
      */
     public Patient addPatient(Patient patient){
         try{
-            logger.info("check if patient : "+patient.getGivenName()+" "+patient.getFamilyName()+" is present in the database");
+            logger.info("check if patient : {} {} is present in the database",patient.getGivenName(),patient.getFamilyName());
             getPatientByName(patient.getGivenName(), patient.getFamilyName());
             throw new PatientAlreadyExistException(patient.getGivenName()+patient.getFamilyName());
         }catch (PatientNotFoundException e){
-            logger.info("save patient : "+patient.getGivenName()+" "+patient.getFamilyName()+" in the database");
+            logger.info("save patient : {} {} in the database",patient.getGivenName(),patient.getFamilyName());
             return patientsRepository.save(patient);
         }
     }
@@ -75,7 +75,7 @@ public class PatientService {
      */
     public Patient updatePatient(Patient patient){
         getPatientById(patient.getId());
-        logger.info("save patient with id :"+patient.getId());
+        logger.info("save patient with id : {}",patient.getId());
         return patientsRepository.save(patient);
     }
 
@@ -85,7 +85,7 @@ public class PatientService {
      */
     public void deletePatientById(Integer id){
         Patient patientToDelete = getPatientById(id);
-        logger.info("delete patient with id : "+patientToDelete.getId());
+        logger.info("delete patient with id : {}",patientToDelete.getId());
         patientsRepository.delete(patientToDelete);
     }
 

@@ -27,7 +27,8 @@ public class Mapper {
         return patient;
     }
 
-    public static PatientDTO mapPatientDTOToPatient(Patient patient){
+
+    public static PatientDTO mapPatientDtoToPatient(Patient patient){
         PatientDTO patientDTO = new PatientDTO();
         if(patient.getId() != null){
             patientDTO.setId(patient.getId());
