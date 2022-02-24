@@ -1,8 +1,10 @@
 package com.mediscreen.notes.controller;
 
+import com.mediscreen.notes.dto.NoteDTO;
 import com.mediscreen.notes.exception.customexceptions.MissingIdException;
 import com.mediscreen.notes.model.Note;
 import com.mediscreen.notes.service.NoteService;
+import com.mediscreen.notes.utils.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/note")
+@RequestMapping("/patHistory")
 public class NoteController {
 
     @Autowired
@@ -57,12 +59,13 @@ public class NoteController {
 
     /**
      * This method answer to a request /add and add a note to the db
-     * @param note note that you want to add
+     * @param noteDto note that you want to add
      * @return the added note (with id) and status code 201 if everything is ok
      */
     @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Note> addNote(@RequestBody Note note){
-        logger.info("post request received at /note/add, call note service to add note for patient id : {}",note.getPatientId());
+    public ResponseEntity<Note> addNote(NoteDTO noteDto){
+        logger.info("post request received at /note/add, call note service to add note for patient id : {}",noteDto.getPatId());
+        Note note = Mapper.mapNoteDtoToNote(noteDto);
         return new ResponseEntity<>(noteService.addNote(note),HttpStatus.CREATED);
     }
 
@@ -71,7 +74,7 @@ public class NoteController {
      * @param note note that you want to update (with id)
      * @return the updated note and status code 201 if everything is ok
      */
-    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", consumes = "application/x-www-form-urlencoded", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Note> updateNote(@RequestBody Note note){
         logger.info("post request received at /note/update, call note service to update note with id : {}",note.getId());
         if(note.getId() == null){
