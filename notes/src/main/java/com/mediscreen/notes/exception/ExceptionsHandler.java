@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 public class ExceptionsHandler {
 //TODO SET LOGS
     @ExceptionHandler(NoteNotFoundException.class)
-    public ResponseEntity<Object>handePatientNotFoundException(NoteNotFoundException e){
+    public ResponseEntity<Object>handeNoteNotFoundException(NoteNotFoundException e){
         CustomErrorResponse errorResponse = new CustomErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND, ZonedDateTime.now());
         return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
     }
