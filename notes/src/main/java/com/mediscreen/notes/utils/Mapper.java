@@ -13,7 +13,6 @@ public class Mapper {
         if(note.getId() != null){
             noteDTO.setId(note.getId());
         }
-        noteDTO.setCreationDateTime(note.getCreationDateTime());
         noteDTO.setNotes(note.getComment());
         noteDTO.setPatId(note.getPatientId());
         return noteDTO;
@@ -26,7 +25,6 @@ public class Mapper {
         }
         note.setPatientId(noteDTO.getPatId());
         note.setComment(noteDTO.getNotes());
-        note.setCreationDateTime(noteDTO.getCreationDateTime());
         return note;
     }
 }

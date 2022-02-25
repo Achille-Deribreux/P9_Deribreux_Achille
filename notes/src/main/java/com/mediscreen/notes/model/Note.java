@@ -32,6 +32,13 @@ public class Note {
         this.comment = comment;
     }
 
+    public Note(String id, Integer patientId, LocalDateTime creationDateTime, String comment) {
+        this.id = id;
+        this.patientId = patientId;
+        this.creationDateTime = creationDateTime;
+        this.comment = comment;
+    }
+
     public String getId() {
         return id;
     }

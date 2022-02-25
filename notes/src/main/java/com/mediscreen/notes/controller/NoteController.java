@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -66,22 +67,25 @@ public class NoteController {
     public ResponseEntity<Note> addNote(NoteDTO noteDto){
         logger.info("post request received at /note/add, call note service to add note for patient id : {}",noteDto.getPatId());
         Note note = Mapper.mapNoteDtoToNote(noteDto);
+        note.setCreationDateTime(LocalDateTime.now());
         return new ResponseEntity<>(noteService.addNote(note),HttpStatus.CREATED);
     }
 
     /**
      * This method answer to a request at /update and update a note in the db
-     * @param note note that you want to update (with id)
+     * @param noteDto note that you want to update (with id)
      * @return the updated note and status code 201 if everything is ok
      */
-    @PutMapping(value = "/update", consumes = "application/x-www-form-urlencoded", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Note> updateNote(@RequestBody Note note){
-        logger.info("post request received at /note/update, call note service to update note with id : {}",note.getId());
-        if(note.getId() == null){
-            logger.error("impossible to update, no id for note of patient id: {}",note.getPatientId());
+    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Note> updateNote(@RequestBody NoteDTO noteDto){
+        logger.info("post request received at /note/update, call note service to update note with id : {}",noteDto.getId());
+        if(noteDto.getId() == null){
+            logger.error("impossible to update, no id for note of patient id: {}",noteDto.getPatId());
             throw new MissingIdException();
         }
         else {
+            Note note = Mapper.mapNoteDtoToNote(noteDto);
+            note.setCreationDateTime(LocalDateTime.now());
             return new ResponseEntity<>(noteService.updateNote(note), HttpStatus.CREATED);
         }
     }
