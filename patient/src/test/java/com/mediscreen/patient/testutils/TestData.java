@@ -1,5 +1,6 @@
 package com.mediscreen.patient.testutils;
 
+import com.mediscreen.patient.model.Gender;
 import com.mediscreen.patient.model.Patient;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class TestData {
                 "Achille",
                 "Deribreux",
                 c1.getTime(),
-                "men",
+                Gender.MALE,
                 "1 rue des developpeurs",
                 "0123456789"
         );
@@ -35,7 +36,7 @@ public class TestData {
                 "Jules",
                 "Deribreux",
                 c1.getTime(),
-                "men",
+                Gender.MALE,
                 "2 rue des artistes",
                 "0123456789"
         );

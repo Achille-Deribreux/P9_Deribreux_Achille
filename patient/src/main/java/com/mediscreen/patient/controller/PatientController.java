@@ -65,11 +65,10 @@ public class PatientController {
      * @return the added patient (with id) and status code 201 if everything is ok
      */
     @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Patient> addPatient( PatientDTO patient) throws ParseException {
+    public ResponseEntity<Patient> addPatient(@RequestBody PatientDTO patient) throws ParseException {
         logger.info("post request received at /patients/add, call patient service to add patient for name : {} {}",patient.getGiven(),patient.getFamily());
         Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
         return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
-        //TODO ACCEPT JSON ALSO AND PUT THE SAME FOR UPDATE METHOD
     }
 
     /**

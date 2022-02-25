@@ -1,9 +1,11 @@
 package com.mediscreen.notes.controller;
 
+import com.mediscreen.notes.dto.NoteDTO;
 import com.mediscreen.notes.model.Note;
 import com.mediscreen.notes.service.NoteService;
 import com.mediscreen.notes.testutils.Converter;
 import com.mediscreen.notes.testutils.TestData;
+import com.mediscreen.notes.utils.Mapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,20 +56,22 @@ class NoteControllerTest {
     void addNoteTest() throws Exception {
         //Given
         Note noteToAdd = TestData.getNoteTwo();
+        NoteDTO noteDTOToAdd = Mapper.mapNoteToNoteDto(noteToAdd);
         //When
         Mockito.when(noteService.addNote(noteToAdd)).thenReturn(noteToAdd);
         //Then
-        mockMvc.perform(post("/patHistory/add").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteToAdd))).andExpect(status().isCreated());
+        mockMvc.perform(post("/patHistory/add").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteDTOToAdd))).andExpect(status().isCreated());
     }
 
     @Test
     void updateNoteTest() throws Exception {
         //Given
         Note noteToUpdate = TestData.getNoteTwo();
+        NoteDTO noteDTOToUpdate = Mapper.mapNoteToNoteDto(noteToUpdate);
         //When
         Mockito.when(noteService.updateNote(noteToUpdate)).thenReturn(noteToUpdate);
         //Then
-        mockMvc.perform(put("/patHistory/update").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteToUpdate))).andExpect(status().isCreated());
+        mockMvc.perform(put("/patHistory/update").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteDTOToUpdate))).andExpect(status().isCreated());
     }
 
     @Test

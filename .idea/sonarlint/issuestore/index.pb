@@ -16,8 +16,6 @@ _patient/src/main/java/com/mediscreen/patient/exception/customexceptions/Missing
 ipatient/src/main/java/com/mediscreen/patient/exception/customexceptions/PatientAlreadyExistException.java,4/9/4916c6a89918a038f2f6be2b2a14486c4d4c7cc4
 ?
 patient/pom.xml,1/4/1459d5e6c9ecd3fc0accf7db860266e4da191c53
-|
-Lpatient/src/test/java/com/mediscreen/patient/service/PatientServiceTest.java,f/9/f9fb8ce8db9af41678a24e45edc5c8a3307b860b
 t
 Dpatient/src/test/java/com/mediscreen/patient/testutils/TestData.java,7/8/782ab34845fea1487e86a54ff0d708ca6a2ef823
 q
@@ -42,8 +40,6 @@ Inotes/src/main/java/com/mediscreen/notes/exception/ExceptionsHandler.java,c/2/
 Knotes/src/main/java/com/mediscreen/notes/exception/CustomErrorResponse.java,a/2/a2e01f168d72fdb581d48336acf004b18a006821
 w
 Gnotes/src/main/java/com/mediscreen/notes/repository/NoteRepository.java,8/a/8a4db97e1c9d98d26d3b0060b9772f860ad3e4aa
-o
-?patient/src/main/java/com/mediscreen/patient/model/Patient.java,7/2/7264dd315f95cc336984fa405d29233f01b3a1dd
 p
 @patient/src/main/java/com/mediscreen/patient/dto/PatientDTO.java,3/d/3d39e7e8597dce2b4e865e6ddc1eb231855a4c20
 q

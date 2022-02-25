@@ -1,6 +1,7 @@
 package com.mediscreen.patient.utils;
 
 import com.mediscreen.patient.dto.PatientDTO;
+import com.mediscreen.patient.model.Gender;
 import com.mediscreen.patient.model.Patient;
 
 import java.text.ParseException;
@@ -18,11 +19,16 @@ public class Mapper {
         if(patientDTO.getId() != null){
             patient.setId(patientDTO.getId());
         }
+        if(patientDTO.getSex().equals("F")){
+            patient.setSex(Gender.FEMALE);
+        }
+        else if(patientDTO.getSex().equals("M")){
+            patient.setSex(Gender.MALE);
+        }
         patient.setGivenName(patientDTO.getGiven());
         patient.setFamilyName(patientDTO.getFamily());
         patient.setAddress(patientDTO.getAddress());
         patient.setBirthdate(format.parse(patientDTO.getDob()));
-        patient.setSex(patientDTO.getSex());
         patient.setPhoneNumber(patientDTO.getPhone());
         return patient;
     }
@@ -38,7 +44,12 @@ public class Mapper {
         patientDTO.setAddress(patient.getAddress());
         patientDTO.setDob(format.format(patient.getBirthdate()));
         patientDTO.setPhone(patient.getPhoneNumber());
-        patientDTO.setSex(patient.getSex());
+       if(patient.getSex().equals(Gender.FEMALE)){
+           patientDTO.setSex("F");
+       }
+       else if(patient.getSex().equals(Gender.MALE)){
+           patientDTO.setSex("M");
+        }
         return patientDTO;
     }
 }
