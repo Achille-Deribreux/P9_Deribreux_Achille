@@ -24,7 +24,7 @@ public class Patient {
     private Date birthdate;
 
     @Column(name="gender")
-    private String sex;
+    private Gender sex;
 
     @Column(name="address")
     private String address;
@@ -35,7 +35,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String givenName, String familyName, Date birthdate, String sex, String address, String phoneNumber) {
+    public Patient(String givenName, String familyName, Date birthdate, Gender sex, String address, String phoneNumber) {
         this.givenName = givenName;
         this.familyName = familyName;
         this.birthdate = birthdate;
@@ -78,11 +78,11 @@ public class Patient {
         this.birthdate = birthdate;
     }
 
-    public String getSex() {
+    public Gender getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Gender sex) {
         this.sex = sex;
     }
 

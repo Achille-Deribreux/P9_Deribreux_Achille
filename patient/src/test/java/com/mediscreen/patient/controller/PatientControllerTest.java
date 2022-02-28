@@ -49,9 +49,10 @@ class PatientControllerTest {
     @Test
     void addPatientTest() throws Exception {
         //Given
-        PatientDTO patientToAdd = Mapper.mapPatientDTOToPatient(TestData.getPatientOne());
+        Patient patient = TestData.getPatientOne();
+        PatientDTO patientToAdd = Mapper.mapPatientDtoToPatient(patient);
         //When
-        Mockito.when(patientService.addPatient(TestData.getPatientOne())).thenReturn(TestData.getPatientOne());
+        Mockito.when(patientService.addPatient(patient)).thenReturn(patient);
         //Then
         mockMvc.perform(post("/patient/add").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(patientToAdd))).andExpect(status().isCreated());
     }
@@ -61,7 +62,7 @@ class PatientControllerTest {
         //Given
         Patient patient = TestData.getPatientOne();
         patient.setId(1);
-        PatientDTO patientToUpdate = Mapper.mapPatientDTOToPatient(patient);
+        PatientDTO patientToUpdate = Mapper.mapPatientDtoToPatient(patient);
         //When
         Mockito.when(patientService.updatePatient(patient)).thenReturn(patient);
         //Then

@@ -20,8 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 class PatientServiceTest {
 
-    //TODO : test exceptions
-
     @Mock
     private PatientRepository patientRepository;
 
