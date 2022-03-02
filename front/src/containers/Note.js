@@ -1,15 +1,15 @@
-import React from 'react';
-import Header from '../components/Header'
-import PatientsTable from "../components/PatientsTable";
+import React from "react";
+import FullNote from "../components/FullNote";
 import SideBar from "../components/SideBar";
 
-class Patients extends React.Component{
+
+class Note extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             isLoaded: false,
-            patients: []
+            note: []
         };
     }
 
@@ -17,22 +17,27 @@ class Patients extends React.Component{
         this.getData();
     }
 
-    getData(){
-        fetch("http://localhost:8081/patient/getAll")
+    getNoteId() {
+        return new URL(document.location).searchParams.get('id');
+    }
+
+    getData() {
+        fetch("http://localhost:8082/patHistory/getById?noteId="+this.getNoteId())
             .then(response => response.json())
             .then((results) => {
                 this.setState({
                     isLoaded: true,
-                    patients: results
+                    note: results
                 });
             })
-            .catch(function(err){
+            .catch(function (err) {
                 alert(err)
             });
     }
 
-    render(){
-        const  {isLoaded, patients } = this.state;
+
+    render() {
+        const {isLoaded, note} = this.state;
 
         if (!isLoaded) {
             return <div>Chargement…</div>;
@@ -40,10 +45,11 @@ class Patients extends React.Component{
             return (
                 <div id="wrapper">
                     <SideBar />
-                    <PatientsTable patients={patients}/>
+                    <FullNote note={note} />
                 </div>
             )
         }
+
     }
 }
-export default Patients;
+export default Note;

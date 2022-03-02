@@ -1,10 +1,9 @@
 import React from "react";
-import {Col, Form, Row} from "react-bootstrap";
-import {Avatar, Button, Container, Typography} from "@mui/material";
-import PatientsProfileForm from "./PatientProfileForm";
+import {Col, Row} from "react-bootstrap";
+import {Button, Container, Typography} from "@mui/material";
 import PatientNotesTable from "./PatientNotesTable";
 import PatientsProfileData from "./PatientProfileData";
-
+import '../assets/vendor/fontawesome-free/css/all.min.css'
 
 class PatientsProfile extends React.Component {
 
@@ -20,7 +19,9 @@ class PatientsProfile extends React.Component {
                     </Row>
                     <Row className="m-5">
                         <Col xs={2}>
-                            <Button variant="contained" color="error" className="mx-1">Delete</Button>
+                            <button href="#" className="btn btn-danger btn-circle btn-lg">
+                                <i className="fas fa-trash"></i>
+                            </button>
                         </Col>
                         <Col>
                             <Typography variant="h4" component="h2" color={"black"} fontWeight={"bold"}>
@@ -28,7 +29,9 @@ class PatientsProfile extends React.Component {
                             </Typography>
                         </Col>
                         <Col xs={2}>
-                            <Button variant="contained" color="primary" className="mx-1">Edit</Button>
+                            <button className="btn btn-primary btn-circle btn-lg">
+                                <i className="fas fa-pen"></i>
+                            </button>
                         </Col>
                     </Row>
                     <Row className="m-5">

@@ -61,7 +61,7 @@ class PatientNotesTable extends React.Component {
                                     <TableCell align="center">{note.creationDateTime}</TableCell>
                                     <TableCell align="center">{note.comment}</TableCell>
                                     <TableCell align="center">
-                                        <Link href="/">
+                                        <Link href={"/note?id="+note.id}>
                                             <Button variant="contained">See full</Button>
                                         </Link>
                                     </TableCell>

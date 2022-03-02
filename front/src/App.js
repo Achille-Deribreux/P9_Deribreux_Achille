@@ -4,6 +4,7 @@ import Home from "./containers/Home";
 import { Routes, Route } from "react-router-dom";
 import Patients from "./containers/Patients";
 import Profile from "./containers/Profile";
+import Note from "./containers/Note";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/patients" element={<Patients />} />
         <Route path="/profile" element={<Profile />} />
+          <Route path="/note" element={<Note />} />
       </Routes>
     </div>
   );
