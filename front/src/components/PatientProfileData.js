@@ -17,17 +17,17 @@ class PatientsProfileData extends React.Component {
             <Paper className="p-2 mb-5">
                 <Row className="mx-3">
                     <Col>
-                        <p className="mt-3 h5">Gender : {patient.sex}</p>
+                        <p className="mt-3 h5"><b>Gender :</b> {patient.sex}</p>
                     </Col>
                     <Col>
-                        <p className="mt-3 h5">Birthdate : {patient.dob}</p>
+                        <p className="mt-3 h5"><b>Birthdate :</b> {patient.dob}</p>
                     </Col>
                 </Row>
                 <Row className="m-3">
-                    <p className="mt-3 h5">Address : {patient.address}</p>
+                    <p className="mt-3 h5"><b>Address :</b> {patient.address}</p>
                 </Row>
                 <Row className="m-3">
-                    <p className="mt-3 h5">Phone : {patient.phone}</p>
+                    <p className="mt-3 h5"><b>Phone :</b> {patient.phone}</p>
                 </Row>
             </Paper>
         )

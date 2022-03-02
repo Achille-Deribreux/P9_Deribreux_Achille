@@ -15,19 +15,23 @@ class PatientsProfile extends React.Component {
         return(
             <React.Fragment>
                 <Container>
+                    <Row>
+
+                    </Row>
                     <Row className="m-5">
+                        <Col xs={2}>
+                            <Button variant="contained" color="error" className="mx-1">Delete</Button>
+                        </Col>
                         <Col>
-                            <Typography variant="h4" component="h2">
+                            <Typography variant="h4" component="h2" color={"black"} fontWeight={"bold"}>
                                 {patient.given + patient.family}
                             </Typography>
                         </Col>
-                        <Col>
-                            <Button variant="contained" color="primary" className="mx-1">Edit Patient</Button>
-                            <Button variant="contained" color="error" className="mx-1">Delete Patient</Button>
+                        <Col xs={2}>
+                            <Button variant="contained" color="primary" className="mx-1">Edit</Button>
                         </Col>
                     </Row>
                     <Row className="m-5">
-                        <h4>See all patient's notes :</h4>
                         <PatientsProfileData patient={patient} />
                     </Row>
                     <Row className="m-3">

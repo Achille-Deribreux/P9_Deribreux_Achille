@@ -29,7 +29,7 @@ class PatientsTable extends React.Component{
                             <td align="center">{patient.address}</td>
                             <td align="center">{patient.phone}</td>
                             <td align="center">
-                                <Link href="/profile?id=1">
+                                <Link href={"/profile?id="+patient.id}>
                                     <Button variant="contained">See profile</Button>
                                 </Link>
                             </td>
