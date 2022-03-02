@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header'
-import {Container} from "react-bootstrap";
+import PatientsTable from "../components/PatientsTable";
+import SideBar from "../components/SideBar";
 
 class Patients extends React.Component{
 
@@ -9,9 +10,7 @@ class Patients extends React.Component{
         this.state = {
             error: null,
             isLoaded: false,
-            patients: [],
-            rows:[],
-            reload : false
+            patients: []
         };
     }
 
@@ -27,7 +26,6 @@ class Patients extends React.Component{
                     isLoaded: true,
                     patients: results
                 });
-               console.log(this.state.patients);
             })
             .catch(function(err){
                 alert(err)
@@ -37,23 +35,14 @@ class Patients extends React.Component{
     render(){
         const  {isLoaded, patients } = this.state;
 
-        const columns = [
-            { field: 'id', headerName: 'ID', width: 70 },
-            { field: 'givenName', headerName: 'Given name', width: 130 },
-            { field: 'familyName', headerName: 'Family name', width: 130 },
-            { field: 'birthdate', headerName: 'Birthdate', width: 130 },
-            { field: 'sex', headerName: 'Gender', width: 130 },
-            { field: 'address', headerName: 'Address', width: 130 },
-            { field: 'phoneNumber', headerName: 'Phone number', width: 130 }
-        ]
-
         if (!isLoaded) {
             return <div>Chargement…</div>;
         } else {
             return (
-                <React.Fragment>
-                    <Header/>
-                </React.Fragment>
+                <div id="wrapper">
+                    <SideBar />
+                    <PatientsTable patients={patients}/>
+                </div>
             )
         }
     }

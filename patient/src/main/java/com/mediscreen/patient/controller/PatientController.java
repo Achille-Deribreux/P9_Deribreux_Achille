@@ -42,9 +42,9 @@ public class PatientController {
      * @return the wanted patient and status code 200 if everything is ok
      */
     @GetMapping("/getById")
-    public ResponseEntity<Patient> getPatientById(@RequestParam(value = "id") Integer id){
+    public ResponseEntity<PatientDTO> getPatientById(@RequestParam(value = "id") Integer id){
         logger.info("get request received at /patients/getById, call patient service to get patient for id :{}}",id);
-        return new ResponseEntity<>(patientService.getPatientById(id),HttpStatus.OK);
+        return new ResponseEntity<>(Mapper.mapPatientToPatientDto(patientService.getPatientById(id)),HttpStatus.OK);
     }
 
     /**
@@ -77,8 +77,9 @@ public class PatientController {
      * @param patient patient that you want to update (with id)
      * @return the updated patient and status code 201 if everything is ok
      */
-    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient) throws ParseException {
+        //TODO : DEBUG TEST
         logger.info("put request received at /patients/update, call patient service to update patient for name : {} {}",patient.getGiven(),patient.getFamily());
         if(patient.getId() == null){
             logger.error("impossible to update, no id for patient : {} {}",patient.getGiven(),patient.getFamily());
