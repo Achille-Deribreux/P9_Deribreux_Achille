@@ -21,8 +21,12 @@ class PatientsProfileForm extends React.Component {
         };
     }
 
+    getPatientId(){
+        return new URL(document.location).searchParams.get('id');
+    }
+
     componentDidMount() {
-        fetch("http://localhost:8081/patient/getById?id=" +1)
+        fetch("http://localhost:8081/patient/getById?id=" +this.getPatientId())
             .then(response => response.json())
             .then((patient) => {
                 this.setState({
@@ -109,36 +113,38 @@ class PatientsProfileForm extends React.Component {
     render() {
         const {patient} = this.props;
         return(
-            <Row className="m-5">
-                <Col>
-                    <div className="input-group m-4">
-                        <span className="input-group-text">First and last name</span>
-                        <input type="text" aria-label="First name" className="form-control" value={this.state.given} onChange={this.handleGiven}/>
-                        <input type="text" aria-label="Last name" className="form-control" value={this.state.family} onChange={this.handleFamily}/>
-                    </div>
+            <Container>
+                <Row className="m-5">
+                    <Col>
+                        <div className="input-group m-4">
+                            <span className="input-group-text">First and last name</span>
+                            <input type="text" aria-label="First name" className="form-control" value={this.state.given} onChange={this.handleGiven}/>
+                            <input type="text" aria-label="Last name" className="form-control" value={this.state.family} onChange={this.handleFamily}/>
+                        </div>
 
-                    <div className="input-group m-4">
-                        <span className="input-group-text">Date of birth</span>
-                        <input type="date" aria-label="Last name" className="form-control" value={this.state.dob} onChange={this.handledob}/>
-                    </div>
-                    <div className="input-group m-4">
-                        <span className="input-group-text">Gender</span>
-                        <Form.Select value={this.state.sex} onChange={this.handleSex}>
-                            <option value="F">Female</option>
-                            <option value="M">Male</option>
-                        </Form.Select>
-                    </div>
-                    <div className="input-group m-4">
-                        <span className="input-group-text">Address</span>
-                        <input type="text" aria-label="Last name" className="form-control" value={this.state.address} onChange={this.handleAddress}/>
-                    </div>
-                    <div className="input-group m-4">
-                        <span className="input-group-text">Phone Number</span>
-                        <input type="text" aria-label="Last name" className="form-control" value={this.state.phone} onChange={this.handlePhone}/>
-                    </div>
-                    <button type="submit" className="btn-lg btn-primary" onClick={this.handleSubmit}>Edit Patient</button>
-                </Col>
-            </Row>
+                        <div className="input-group m-4">
+                            <span className="input-group-text">Date of birth</span>
+                            <input type="date" aria-label="Last name" className="form-control" value={this.state.dob} onChange={this.handledob}/>
+                        </div>
+                        <div className="input-group m-4">
+                            <span className="input-group-text">Gender</span>
+                            <Form.Select value={this.state.sex} onChange={this.handleSex}>
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                            </Form.Select>
+                        </div>
+                        <div className="input-group m-4">
+                            <span className="input-group-text">Address</span>
+                            <input type="text" aria-label="Last name" className="form-control" value={this.state.address} onChange={this.handleAddress}/>
+                        </div>
+                        <div className="input-group m-4">
+                            <span className="input-group-text">Phone Number</span>
+                            <input type="text" aria-label="Last name" className="form-control" value={this.state.phone} onChange={this.handlePhone}/>
+                        </div>
+                        <button type="submit" className="btn-lg btn-primary" onClick={this.handleSubmit}>Edit Patient</button>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }

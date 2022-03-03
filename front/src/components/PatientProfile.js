@@ -1,6 +1,6 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
-import {Button, Container, Typography} from "@mui/material";
+import {Button, Container, Link, Typography} from "@mui/material";
 import PatientNotesTable from "./PatientNotesTable";
 import PatientsProfileData from "./PatientProfileData";
 import '../assets/vendor/fontawesome-free/css/all.min.css'
@@ -20,7 +20,7 @@ class PatientsProfile extends React.Component {
                     <Row className="m-5">
                         <Col xs={2}>
                             <button href="#" className="btn btn-danger btn-circle btn-lg">
-                                <i className="fas fa-trash"></i>
+                                <i className="fas fa-trash" />
                             </button>
                         </Col>
                         <Col>
@@ -29,9 +29,11 @@ class PatientsProfile extends React.Component {
                             </Typography>
                         </Col>
                         <Col xs={2}>
-                            <button className="btn btn-primary btn-circle btn-lg">
-                                <i className="fas fa-pen"></i>
-                            </button>
+                            <Link href={"/editProfile?id="+patient.id}>
+                                <button className="btn btn-primary btn-circle btn-lg">
+                                    <i className="fas fa-pen" />
+                                </button>
+                            </Link>
                         </Col>
                     </Row>
                     <Row className="m-5">

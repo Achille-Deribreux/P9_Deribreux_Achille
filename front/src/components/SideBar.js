@@ -15,7 +15,7 @@ class SideBar extends React.Component{
                     </Link>
                 </li>
                 <li className="nav-item  my-2">
-                    <Link className="nav-link" href="/">
+                    <Link className="nav-link" href="/notes">
                         <i className="fas fa-fw fa-cog"></i>
                         <span><b>Notes</b></span>
                     </Link>
