@@ -64,7 +64,7 @@ public class NoteController {
      * @return the added note (with id) and status code 201 if everything is ok
      */
     @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Note> addNote(NoteDTO noteDto){
+    public ResponseEntity<Note> addNote(@RequestBody NoteDTO noteDto){
         logger.info("post request received at /note/add, call note service to add note for patient id : {}",noteDto.getPatId());
         Note note = Mapper.mapNoteDtoToNote(noteDto);
         note.setCreationDateTime(LocalDateTime.now());

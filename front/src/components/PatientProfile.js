@@ -4,10 +4,32 @@ import {Button, Container, Link, Typography} from "@mui/material";
 import PatientNotesTable from "./PatientNotesTable";
 import PatientsProfileData from "./PatientProfileData";
 import '../assets/vendor/fontawesome-free/css/all.min.css'
+import {Redirect} from "react-router-dom";
 
 class PatientsProfile extends React.Component {
 
+    constructor(props, context) {
+        super(props, context);
+    }
 
+
+
+    deletePatient(){
+        fetch("http://localhost:8081/patient/delete?id="+ new URL(document.location).searchParams.get('id'), {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' ,
+                'Authorization': localStorage.getItem('token')
+            }
+        })
+            .then(() => {
+
+            })
+            .catch(function (err) {
+                alert(err)
+            });
+    }
 
     render() {
         const {patient} = this.props;
@@ -19,7 +41,7 @@ class PatientsProfile extends React.Component {
                     </Row>
                     <Row className="m-5">
                         <Col xs={2}>
-                            <button href="#" className="btn btn-danger btn-circle btn-lg">
+                            <button onClick={this.deletePatient} className="btn btn-danger btn-circle btn-lg">
                                 <i className="fas fa-trash" />
                             </button>
                         </Col>
@@ -44,7 +66,9 @@ class PatientsProfile extends React.Component {
                             <h4>See all patient's notes :</h4>
                         </Col>
                         <Col xs={3}>
-                            <Button variant="contained" color="success" className="mx-1">Add Note</Button>
+                            <Link href="/addNote">
+                                <Button variant="contained" color="primary" className="mx-1">Add Note</Button>
+                            </Link>
                         </Col>
                     </Row>
                     <Row className="m-5">

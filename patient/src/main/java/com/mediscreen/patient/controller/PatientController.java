@@ -94,7 +94,7 @@ public class PatientController {
      * @param id id of the patient that you want to delete
      * @return response entity with status code 200 if everything is ok
      */
-    @DeleteMapping("/delete")
+    @RequestMapping("/delete")
     public ResponseEntity<String> deleteById(@RequestParam(value = "id")Integer id){
         logger.info("delete request received at /patients/delete for id : {}",id);
         patientService.deletePatientById(id);

@@ -42,8 +42,6 @@ j
 :notes/src/main/java/com/mediscreen/notes/utils/Mapper.java,c/2/c2b61f3e68a425e165ad7e667866e95a6fbb621b
 p
 @notes/src/test/java/com/mediscreen/notes/testutils/TestData.java,8/b/8b0df7f06c1e1e0951f65d655235e1064688b964
-i
-9notes/src/main/java/com/mediscreen/notes/dto/NoteDTO.java,7/1/715a647cd6fb47160a76d72ecddd2ab29228c1d1
 h
 8notes/src/main/java/com/mediscreen/notes/model/Note.java,4/4/447207a834e366c1417d5db32c3f5d01410f0db3
 {
@@ -70,7 +68,5 @@ n
 >patient/src/main/java/com/mediscreen/patient/utils/Mapper.java,b/b/bb584bc640482d595126b47fa42cf44013b7da39
 3
 sql,d/b/db1dfd45b163e0f299b0e158a21766a53bb0fa68
-r
-Bpatient/src/main/java/com/mediscreen/patient/Config/WebConfig.java,a/4/a4b660b49d38e6ead40a02cca9bab052cea41265
 n
 >notes/src/main/java/com/mediscreen/notes/config/WebConfig.java,9/8/988c407117ee08b0bd8889f79e793c873498c031

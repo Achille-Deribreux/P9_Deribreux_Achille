@@ -7,6 +7,7 @@ import Profile from "./containers/Profile";
 import Note from "./containers/Note";
 import Notes from "./containers/Notes";
 import EditProfile from "./containers/EditProfile";
+import AddNote from "./containers/AddNote";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/note" element={<Note />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/editProfile" element={<EditProfile />} />
+        <Route path="/addNote" element={<AddNote />} />
       </Routes>
     </div>
   );
