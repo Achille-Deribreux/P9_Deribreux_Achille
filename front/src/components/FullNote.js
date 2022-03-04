@@ -4,6 +4,22 @@ import React from "react";
 
 class FullNote extends React.Component{
 
+    deleteNote(){
+        fetch("http://localhost:8082/patHistory/delete?noteId="+ new URL(document.location).searchParams.get('id'), {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' ,
+            }
+        })
+            .then(() => {
+
+            })
+            .catch(function (err) {
+                alert(err)
+            });
+    }
+
     render() {
         const{note} = this.props;
         return(
@@ -11,7 +27,7 @@ class FullNote extends React.Component{
                 <Paper className="p-2 m-2">
                     <Row className="my-4">
                         <Col>
-                            <button className="btn-lg btn-danger">Delete note</button>
+                            <button className="btn-lg btn-danger" onClick={this.deleteNote}>Delete note</button>
                         </Col>
                         <Col>
                             <Link href={"/editNote?id="+note.id}>

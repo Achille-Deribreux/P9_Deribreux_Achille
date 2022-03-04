@@ -8,17 +8,15 @@ class Note extends React.Component{
         const{note} = this.props;
         return(
             <Container className="mt-5">
-                <Paper className="p-2 m-2">
-                    <Row className="my-4">
+                <Paper className="p-4 m-2">
+                    <Row className="mt-3">
+                        <Col xs={10}>
+                            <p><b>Note Id : </b> {note.id}</p>
+                        </Col>
                         <Col>
                             <Link href={"/note?id="+note.id}>
-                                <button className="btn-lg btn-primary">See full</button>
+                                <button className="btn-lg btn-primary btn-circle"><i className="fas fa-eye" /></button>
                             </Link>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <p><b>Note Id : </b> {note.id}</p>
                         </Col>
                     </Row>
                     <Row>
