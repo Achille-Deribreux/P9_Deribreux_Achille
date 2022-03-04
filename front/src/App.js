@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./containers/Home";
-import { Routes, Route } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import Patients from "./containers/Patients";
 import Profile from "./containers/Profile";
 import Note from "./containers/Note";

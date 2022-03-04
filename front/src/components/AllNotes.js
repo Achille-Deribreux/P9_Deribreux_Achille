@@ -10,7 +10,7 @@ class AllNotes extends React.Component{
         return(
             <Container>
                 {notes.map((note)=>(
-                    <Note note={note} />
+                    <Note note={note} key={note.id} />
                     ))}
             </Container>
         )

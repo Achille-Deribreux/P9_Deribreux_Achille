@@ -29,7 +29,7 @@ class AddNoteForm extends React.Component{
             });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = () => {
         const data = {
             "patId": this.state.patientId,
             "notes":this.state.note

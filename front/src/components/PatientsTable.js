@@ -21,7 +21,7 @@ class PatientsTable extends React.Component{
                     </thead>
                     <tbody>
                     {patients.map((patient) => (
-                        <tr>
+                        <tr key={patient.id}>
                             <td align="center">{patient.given}</td>
                             <td align="center">{patient.family}</td>
                             <td align="center">{patient.dob}</td>

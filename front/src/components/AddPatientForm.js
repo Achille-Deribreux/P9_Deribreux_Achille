@@ -53,15 +53,13 @@ class AddPatientForm extends React.Component {
         console.log(this.state.sex)
     }
 
-    handledob = (e) => {
+    handleDob = (e) => {
         this.setState({
             dob: e.target.value
         })
     }
 
     handleSubmit = (e) => {
-        //const data = JSON.stringify(this.state);
-
         const data = {
             "id": this.state.id,
             "given": this.state.given,
@@ -102,7 +100,7 @@ class AddPatientForm extends React.Component {
                             <div className="input-group m-4">
                                 <span className="input-group-text">Date of birth</span>
                                 <input type="date" aria-label="Last name" className="form-control"
-                                       value={this.state.dob} onChange={this.handledob}/>
+                                       value={this.state.dob} onChange={this.handleDob}/>
                             </div>
                             <div className="input-group m-4">
                                 <span className="input-group-text">Gender</span>
