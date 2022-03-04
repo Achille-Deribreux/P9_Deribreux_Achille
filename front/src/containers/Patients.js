@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header'
 import PatientsTable from "../components/PatientsTable";
 import SideBar from "../components/SideBar";
 

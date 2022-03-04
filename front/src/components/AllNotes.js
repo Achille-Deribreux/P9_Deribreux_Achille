@@ -1,6 +1,7 @@
 import React from "react";
 import {Container} from "react-bootstrap";
 import FullNote from "./FullNote";
+import Note from "./Note";
 
 class AllNotes extends React.Component{
 
@@ -9,7 +10,7 @@ class AllNotes extends React.Component{
         return(
             <Container>
                 {notes.map((note)=>(
-                    <FullNote note={note} />
+                    <Note note={note} />
                     ))}
             </Container>
         )

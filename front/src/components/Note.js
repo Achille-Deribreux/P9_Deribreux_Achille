@@ -2,7 +2,7 @@ import {Container, Link, Paper} from "@mui/material";
 import {Button, Col, Row} from "react-bootstrap";
 import React from "react";
 
-class FullNote extends React.Component{
+class Note extends React.Component{
 
     render() {
         const{note} = this.props;
@@ -11,11 +11,8 @@ class FullNote extends React.Component{
                 <Paper className="p-2 m-2">
                     <Row className="my-4">
                         <Col>
-                            <button className="btn-lg btn-danger">Delete note</button>
-                        </Col>
-                        <Col>
-                            <Link href={"/editNote?id="+note.id}>
-                                <button className="btn-lg btn-primary">Edit note</button>
+                            <Link href={"/note?id="+note.id}>
+                                <button className="btn-lg btn-primary">See full</button>
                             </Link>
                         </Col>
                     </Row>
@@ -43,4 +40,4 @@ class FullNote extends React.Component{
         )
     }
 }
-export default FullNote;
+export default Note;

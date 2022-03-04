@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Header";
 import PatientsProfile from "../components/PatientProfile";
 import '../assets/css/sb-admin-2.css'
 import SideBar from "../components/SideBar";
