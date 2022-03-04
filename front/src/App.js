@@ -9,6 +9,7 @@ import Notes from "./containers/Notes";
 import EditProfile from "./containers/EditProfile";
 import AddNote from "./containers/AddNote";
 import EditNote from "./containers/EditNote";
+import AddPatient from "./containers/AddPatient";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/editProfile" element={<EditProfile />} />
         <Route path="/addNote" element={<AddNote />} />
         <Route path="/editNote" element={<EditNote />} />
+        <Route path="/AddPatient" element={<AddPatient />} />
       </Routes>
     </div>
   );
