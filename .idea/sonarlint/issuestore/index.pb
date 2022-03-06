@@ -68,17 +68,5 @@ n
 >patient/src/main/java/com/mediscreen/patient/utils/Mapper.java,b/b/bb584bc640482d595126b47fa42cf44013b7da39
 3
 sql,d/b/db1dfd45b163e0f299b0e158a21766a53bb0fa68
-B
-docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
-r
-Bpatient/src/main/java/com/mediscreen/patient/Config/WebConfig.java,a/4/a4b660b49d38e6ead40a02cca9bab052cea41265
 u
 Enotes/src/test/java/com/mediscreen/notes/service/NoteServiceTest.java,8/7/8717cf842b8e96b55be391ef3d0b04430b97325b
-n
->notes/src/main/java/com/mediscreen/notes/config/WebConfig.java,9/8/988c407117ee08b0bd8889f79e793c873498c031
-w
-Gnotes/src/main/java/com/mediscreen/notes/controller/NoteController.java,0/a/0a0c382afe52e39654d196d32bd5e6e196955d51
-~
-Npatient/src/main/java/com/mediscreen/patient/controller/PatientController.java,6/d/6dcfe17abaebfde606565763e681b36885caa1b4
-i
-9notes/src/main/java/com/mediscreen/notes/dto/NoteDTO.java,7/1/715a647cd6fb47160a76d72ecddd2ab29228c1d1
