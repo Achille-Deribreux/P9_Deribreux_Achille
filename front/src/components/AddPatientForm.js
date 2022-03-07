@@ -69,7 +69,7 @@ class AddPatientForm extends React.Component {
             "address": this.state.address,
             "phone": this.state.phone
         };
-        fetch("http://localhost:8081/patient/add", {
+        fetch("http://localhost:8081/patient/addJson", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

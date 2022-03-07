@@ -64,9 +64,20 @@ public class PatientController {
      * @param patient patient that you want to add
      * @return the added patient (with id) and status code 201 if everything is ok
      */
-    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Patient> addPatient(@RequestBody PatientDTO patient) throws ParseException {
-        //TODO FIX BC CURL DOES NOT WORK WITH REQUESTBODY
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> addPatient(PatientDTO patient) throws ParseException {
+        logger.info("post request received at /patients/add, call patient service to add patient for name : {} {}",patient.getGiven(),patient.getFamily());
+        Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
+        return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
+    }
+
+    /**
+     * This method answer to a request at /patient/add
+     * @param patient patient that you want to add
+     * @return the added patient (with id) and status code 201 if everything is ok
+     */
+    @PostMapping(value = "/addJson", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> addPatientJson(@RequestBody PatientDTO patient) throws ParseException {
         logger.info("post request received at /patients/add, call patient service to add patient for name : {} {}",patient.getGiven(),patient.getFamily());
         Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
         return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
