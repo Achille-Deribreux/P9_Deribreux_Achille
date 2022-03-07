@@ -13,7 +13,7 @@ class FullNote extends React.Component{
             }
         })
             .then(() => {
-
+                window.location="./notes"
             })
             .catch(function (err) {
                 alert(err)

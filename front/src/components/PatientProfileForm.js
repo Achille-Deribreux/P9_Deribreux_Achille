@@ -104,7 +104,7 @@ class PatientsProfileForm extends React.Component {
             body: JSON.stringify(data)
         })
             .then((res) => {
-                console.log(res);
+                window.location="./patients"
             })
             .catch((err) => console.log(err));
     }

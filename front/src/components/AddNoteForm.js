@@ -44,7 +44,7 @@ class AddNoteForm extends React.Component{
             body: JSON.stringify(data)
         })
             .then((res) => {
-                console.log(res);
+                window.location="./notes"
             })
             .catch((err)=>console.log(err));
     }

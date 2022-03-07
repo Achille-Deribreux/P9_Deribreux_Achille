@@ -41,10 +41,10 @@ class Profile extends React.Component {
             return <div>Chargement…</div>;
         } else {
             return (
-                <div id="wrapper">
-                    <SideBar />
-                    <PatientsProfile patient={patient}/>
-                </div>
+                    <div id="wrapper">
+                        <SideBar />
+                        <PatientsProfile patient={patient}/>
+                    </div>
             )
         }
     }
