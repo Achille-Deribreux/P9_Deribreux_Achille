@@ -95,7 +95,7 @@ class PatientsProfileForm extends React.Component {
             "phone": this.state.phone
         };
         fetch("http://localhost:8081/patient/update", {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

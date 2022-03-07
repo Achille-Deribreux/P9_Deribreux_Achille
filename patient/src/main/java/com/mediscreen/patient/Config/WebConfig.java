@@ -29,7 +29,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
             config.addAllowedMethod("POST");
             config.addAllowedMethod("DELETE");
             config.addAllowedMethod("GET");
-            config.addAllowedMethod("PATCH");
+            config.addAllowedMethod("PUT");
             source.registerCorsConfiguration("/**", config);
             return new CorsFilter(source);
         }

@@ -56,8 +56,6 @@ n
 >patient/src/main/java/com/mediscreen/patient/model/Gender.java,c/3/c39a87b7f35526598c4fa7be860a018909783149
 |
 Lpatient/src/test/java/com/mediscreen/patient/service/PatientServiceTest.java,f/9/f9fb8ce8db9af41678a24e45edc5c8a3307b860b
-‚
-Rpatient/src/test/java/com/mediscreen/patient/controller/PatientControllerTest.java,9/0/90f0ad20818415bac81b5d78389daa4855b5a886
 p
 @patient/src/main/java/com/mediscreen/patient/dto/PatientDTO.java,3/d/3d39e7e8597dce2b4e865e6ddc1eb231855a4c20
 n

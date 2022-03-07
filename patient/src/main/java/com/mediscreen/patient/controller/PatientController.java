@@ -88,9 +88,8 @@ public class PatientController {
      * @param patient patient that you want to update (with id)
      * @return the updated patient and status code 201 if everything is ok
      */
-    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient) throws ParseException {
-        //TODO : DEBUG TEST
         logger.info("put request received at /patients/update, call patient service to update patient for name : {} {}",patient.getGiven(),patient.getFamily());
         if(patient.getId() == null){
             logger.error("impossible to update, no id for patient : {} {}",patient.getGiven(),patient.getFamily());

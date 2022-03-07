@@ -47,14 +47,14 @@ class PatientControllerTest {
     }
 
     @Test
-    void addPatientTest() throws Exception {
+    void addPatientJsonTest() throws Exception {
         //Given
         Patient patient = TestData.getPatientOne();
         PatientDTO patientToAdd = Mapper.mapPatientToPatientDto(patient);
         //When
         Mockito.when(patientService.addPatient(patient)).thenReturn(patient);
         //Then
-        mockMvc.perform(post("/patient/add").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(patientToAdd))).andExpect(status().isCreated());
+        mockMvc.perform(post("/patient/addJson").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(patientToAdd))).andExpect(status().isCreated());
     }
 
     @Test
