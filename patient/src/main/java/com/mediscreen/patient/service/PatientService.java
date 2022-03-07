@@ -1,9 +1,11 @@
 package com.mediscreen.patient.service;
 
+import com.mediscreen.patient.dto.PatientDTO;
 import com.mediscreen.patient.exception.customexceptions.PatientAlreadyExistException;
 import com.mediscreen.patient.exception.customexceptions.PatientNotFoundException;
 import com.mediscreen.patient.model.Patient;
 import com.mediscreen.patient.repository.PatientRepository;
+import com.mediscreen.patient.utils.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,12 @@ public class PatientService {
      * Method which returns a list of all the patients in database
      * @return list of all the patients
      */
-    public List<Patient> getAllPatient(){
+    public List<PatientDTO> getAllPatient(){
         logger.info("get all patients from the repository");
-        List<Patient> patientList = new ArrayList<>();
-        patientsRepository.findAll().forEach(patientList::add);
+        List<PatientDTO> patientList = new ArrayList<>();
+        for(Patient patient : patientsRepository.findAll()){
+            patientList.add(Mapper.mapPatientToPatientDto(patient));
+        }
         return patientList;
     }
 

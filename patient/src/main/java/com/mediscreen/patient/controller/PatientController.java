@@ -31,7 +31,7 @@ public class PatientController {
      * @return list of all the patients and status code 200 if everything is ok
      */
     @GetMapping("/getAll")
-    public ResponseEntity<List<Patient>> getAllPatients(){
+    public ResponseEntity<List<PatientDTO>> getAllPatients(){
         logger.info("get request received at /patients/getAll, call patient service to get all patientsList");
         return new ResponseEntity<>(patientService.getAllPatient(), HttpStatus.OK);
     }
@@ -42,9 +42,9 @@ public class PatientController {
      * @return the wanted patient and status code 200 if everything is ok
      */
     @GetMapping("/getById")
-    public ResponseEntity<Patient> getPatientById(@RequestParam(value = "id") Integer id){
+    public ResponseEntity<PatientDTO> getPatientById(@RequestParam(value = "id") Integer id){
         logger.info("get request received at /patients/getById, call patient service to get patient for id :{}}",id);
-        return new ResponseEntity<>(patientService.getPatientById(id),HttpStatus.OK);
+        return new ResponseEntity<>(Mapper.mapPatientToPatientDto(patientService.getPatientById(id)),HttpStatus.OK);
     }
 
     /**
@@ -64,8 +64,20 @@ public class PatientController {
      * @param patient patient that you want to add
      * @return the added patient (with id) and status code 201 if everything is ok
      */
-    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Patient> addPatient(@RequestBody PatientDTO patient) throws ParseException {
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> addPatient(PatientDTO patient) throws ParseException {
+        logger.info("post request received at /patients/add, call patient service to add patient for name : {} {}",patient.getGiven(),patient.getFamily());
+        Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
+        return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
+    }
+
+    /**
+     * This method answer to a request at /patient/addJson
+     * @param patient patient that you want to add
+     * @return the added patient (with id) and status code 201 if everything is ok
+     */
+    @PostMapping(value = "/addJson", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> addPatientJson(@RequestBody PatientDTO patient) throws ParseException {
         logger.info("post request received at /patients/add, call patient service to add patient for name : {} {}",patient.getGiven(),patient.getFamily());
         Patient patientToAdd = Mapper.mapPatientDtoToPatient(patient);
         return new ResponseEntity<>(patientService.addPatient(patientToAdd),HttpStatus.CREATED);
@@ -76,7 +88,7 @@ public class PatientController {
      * @param patient patient that you want to update (with id)
      * @return the updated patient and status code 201 if everything is ok
      */
-    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Patient> updatePatient(@RequestBody PatientDTO patient) throws ParseException {
         logger.info("put request received at /patients/update, call patient service to update patient for name : {} {}",patient.getGiven(),patient.getFamily());
         if(patient.getId() == null){
@@ -92,7 +104,7 @@ public class PatientController {
      * @param id id of the patient that you want to delete
      * @return response entity with status code 200 if everything is ok
      */
-    @DeleteMapping("/delete")
+    @RequestMapping("/delete")
     public ResponseEntity<String> deleteById(@RequestParam(value = "id")Integer id){
         logger.info("delete request received at /patients/delete for id : {}",id);
         patientService.deletePatientById(id);

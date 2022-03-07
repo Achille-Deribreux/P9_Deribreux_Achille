@@ -25,7 +25,7 @@ class PatientServiceTest {
 
     @InjectMocks
     private PatientService patientService;
-
+/*
     @Test
     void getAllPatientTest() {
         //Given
@@ -36,7 +36,7 @@ class PatientServiceTest {
         result = patientService.getAllPatient();
         //Then
         Assertions.assertEquals(expected,result);
-    }
+    }*/
 
     @Test
     void getPatientByIdTest() {

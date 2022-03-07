@@ -63,8 +63,21 @@ public class NoteController {
      * @param noteDto note that you want to add
      * @return the added note (with id) and status code 201 if everything is ok
      */
-    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Note> addNote(NoteDTO noteDto){
+        logger.info("post request received at /note/add, call note service to add note for patient id : {}",noteDto.getPatId());
+        Note note = Mapper.mapNoteDtoToNote(noteDto);
+        note.setCreationDateTime(LocalDateTime.now());
+        return new ResponseEntity<>(noteService.addNote(note),HttpStatus.CREATED);
+    }
+
+    /**
+     * This method answer to a request /addJson and add a note to the db
+     * @param noteDto note that you want to add
+     * @return the added note (with id) and status code 201 if everything is ok
+     */
+    @PostMapping(value = "/addJson", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Note> addNoteJson(@RequestBody NoteDTO noteDto){
         logger.info("post request received at /note/add, call note service to add note for patient id : {}",noteDto.getPatId());
         Note note = Mapper.mapNoteDtoToNote(noteDto);
         note.setCreationDateTime(LocalDateTime.now());
@@ -76,7 +89,7 @@ public class NoteController {
      * @param noteDto note that you want to update (with id)
      * @return the updated note and status code 201 if everything is ok
      */
-    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Note> updateNote(@RequestBody NoteDTO noteDto){
         logger.info("post request received at /note/update, call note service to update note with id : {}",noteDto.getId());
         if(noteDto.getId() == null){
