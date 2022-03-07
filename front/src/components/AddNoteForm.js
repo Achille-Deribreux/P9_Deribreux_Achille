@@ -1,5 +1,5 @@
 import {Col, Form, Row} from "react-bootstrap";
-import {Container} from "@mui/material";
+import {Container, Link} from "@mui/material";
 import React from "react";
 
 
@@ -68,6 +68,15 @@ class AddNoteForm extends React.Component{
         } else {
             return (
                 <Container>
+                    <Row className="mt-3">
+                        <Col xs={2}>
+                            <Link href={"/notes"}>
+                                <button className="btn btn-secondary btn-circle btn-lg">
+                                    <i className="fas fa-arrow-left" />
+                                </button>
+                            </Link>
+                        </Col>
+                    </Row>
                     <Row className="m-5">
                         <Col>
                             <div className="input-group m-4">

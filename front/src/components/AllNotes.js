@@ -24,7 +24,14 @@ class AllNotes extends React.Component{
         return(
             <Container>
                 <Row className="align-items-center">
-                    <Col xs={10}>
+                    <Col xs={1}>
+                        <Link href={"/"}>
+                            <button className="btn btn-secondary btn-circle btn-lg">
+                                <i className="fas fa-arrow-left" />
+                            </button>
+                        </Link>
+                    </Col>
+                    <Col xs={9}>
                         <div className="input-group m-4">
                             <span className="input-group-text">Search note :</span>
                             <input type="text" aria-label="Last name" className="form-control" value={this.state.searchTerm} onChange={this.handleSearchTerm}/>

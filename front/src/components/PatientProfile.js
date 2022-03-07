@@ -32,26 +32,33 @@ class PatientsProfile extends React.Component {
         const {patient} = this.props;
         return(
             <Container>
-                <Row>
-
-                </Row>
-                <Row className="m-5">
+                <Row className="mt-3">
                     <Col xs={2}>
-                        <button onClick={this.deletePatient} className="btn btn-danger btn-circle btn-lg">
+                        <Link href={"/patients"}>
+                            <button className="btn btn-secondary btn-circle btn-lg">
+                                <i className="fas fa-arrow-left" />
+                            </button>
+                        </Link>
+                    </Col>
+                    <Col>
+
+                    </Col>
+                    <Col xs={3}>
+                        <button onClick={this.deletePatient} className="btn btn-danger btn-circle btn-lg mx-1">
                             <i className="fas fa-trash" />
                         </button>
+                        <Link href={"/editProfile?id="+patient.id}>
+                            <button className="btn btn-primary btn-circle btn-lg mx-1">
+                                <i className="fas fa-pen" />
+                            </button>
+                        </Link>
                     </Col>
+                </Row>
+                <Row className="m-5">
                     <Col>
                         <Typography variant="h4" component="h2" color={"black"} fontWeight={"bold"}>
                             {patient.given + patient.family}
                         </Typography>
-                    </Col>
-                    <Col xs={2}>
-                        <Link href={"/editProfile?id="+patient.id}>
-                            <button className="btn btn-primary btn-circle btn-lg">
-                                <i className="fas fa-pen" />
-                            </button>
-                        </Link>
                     </Col>
                 </Row>
                 <Row className="m-5">
