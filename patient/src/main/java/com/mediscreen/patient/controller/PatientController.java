@@ -72,7 +72,7 @@ public class PatientController {
     }
 
     /**
-     * This method answer to a request at /patient/add
+     * This method answer to a request at /patient/addJson
      * @param patient patient that you want to add
      * @return the added patient (with id) and status code 201 if everything is ok
      */

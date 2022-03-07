@@ -53,14 +53,14 @@ class NoteControllerTest {
     }
 
     @Test
-    void addNoteTest() throws Exception {
+    void addJsonNoteTest() throws Exception {
         //Given
         Note noteToAdd = TestData.getNoteTwo();
         NoteDTO noteDTOToAdd = Mapper.mapNoteToNoteDto(noteToAdd);
         //When
         Mockito.when(noteService.addNote(noteToAdd)).thenReturn(noteToAdd);
         //Then
-        mockMvc.perform(post("/patHistory/add").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteDTOToAdd))).andExpect(status().isCreated());
+        mockMvc.perform(post("/patHistory/addJson").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteDTOToAdd))).andExpect(status().isCreated());
     }
 
     @Test

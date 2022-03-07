@@ -44,8 +44,6 @@ p
 @notes/src/test/java/com/mediscreen/notes/testutils/TestData.java,8/b/8b0df7f06c1e1e0951f65d655235e1064688b964
 h
 8notes/src/main/java/com/mediscreen/notes/model/Note.java,4/4/447207a834e366c1417d5db32c3f5d01410f0db3
-{
-Knotes/src/test/java/com/mediscreen/notes/controller/NoteControllerTest.java,1/7/17aa43f86cb9bd22e4fb582bf30c60da6689fa7a
 y
 Inotes/src/main/java/com/mediscreen/notes/exception/ExceptionsHandler.java,c/2/c2436ca6085ba031ff4d2f107cd7a7a20dc9a98e
 }

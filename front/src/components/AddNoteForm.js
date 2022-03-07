@@ -35,7 +35,7 @@ class AddNoteForm extends React.Component{
             "notes":this.state.note
         }
 
-        fetch("http://localhost:8082/patHistory/add", {
+        fetch("http://localhost:8082/patHistory/addJson", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
