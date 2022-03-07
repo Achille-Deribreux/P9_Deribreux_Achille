@@ -41,7 +41,7 @@ class PatientsTable extends React.Component{
                     </Col>
                     <Col>
                         <Link href={"/addPatient"}>
-                            <button onClick={this.deletePatient} className="btn btn-primary btn-circle btn-lg">
+                            <button className="btn btn-primary btn-circle btn-lg">
                                 <i className="fas fa-plus" />
                             </button>
                         </Link>
