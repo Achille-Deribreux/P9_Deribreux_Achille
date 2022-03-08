@@ -3,6 +3,7 @@ package com.mediscreen.assessment.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 public class Note {
@@ -69,5 +70,18 @@ public class Note {
                 ", creationDateTime=" + creationDateTime +
                 ", comment='" + comment + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return Objects.equals(id, note.id) && Objects.equals(patientId, note.patientId) && Objects.equals(creationDateTime, note.creationDateTime) && Objects.equals(comment, note.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, patientId, creationDateTime, comment);
     }
 }

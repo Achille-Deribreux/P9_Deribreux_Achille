@@ -21,7 +21,6 @@ public class PatientWebClient {
     private final String GET_ALL_PATIENTS_URL = "/getAll";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
 
-
     public PatientDTO getPatientById(int patientId){
         ResponseEntity<PatientDTO> result = restTemplate.exchange(
                 BASE_URL_LOCALHOST_PATIENT+
