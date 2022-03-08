@@ -58,6 +58,17 @@ class PatientControllerTest {
     }
 
     @Test
+    void addPatientTest() throws Exception {
+        //Given
+        Patient patient = TestData.getPatientOne();
+        PatientDTO patientToAdd = Mapper.mapPatientToPatientDto(patient);
+        //When
+        Mockito.when(patientService.addPatient(patient)).thenReturn(patient);
+        //Then
+        mockMvc.perform(post("/patient/add").contentType(MediaType.APPLICATION_FORM_URLENCODED).content("family=Deribreux&given=Achille&dob=2000-03-11&sex=M&address=1 rue des developpeurs&phone=0123456789")).andExpect(status().isCreated());
+    }
+
+    @Test
     void updatePatientTest() throws Exception {
         //Given
         Patient patient = TestData.getPatientOne();
@@ -67,6 +78,17 @@ class PatientControllerTest {
         Mockito.when(patientService.updatePatient(patient)).thenReturn(patient);
         //Then
         mockMvc.perform(put("/patient/update").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(patientToUpdate))).andExpect(status().isCreated());
+    }
+
+    @Test
+    void updatePatientExceptionTest() throws Exception {
+        //Given
+        Patient patient = TestData.getPatientOne();
+        PatientDTO patientToUpdate = Mapper.mapPatientToPatientDto(patient);
+        //When
+        Mockito.when(patientService.updatePatient(patient)).thenReturn(patient);
+        //Then
+        mockMvc.perform(put("/patient/update").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(patientToUpdate))).andExpect(status().isBadRequest());
     }
 
     @Test

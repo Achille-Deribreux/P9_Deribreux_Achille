@@ -53,6 +53,16 @@ class NoteControllerTest {
     }
 
     @Test
+    void addNoteTest() throws Exception {
+        //Given
+        Note noteToAdd = TestData.getNoteTwo();
+        //When
+        Mockito.when(noteService.addNote(noteToAdd)).thenReturn(noteToAdd);
+        //Then
+        mockMvc.perform(post("/patHistory/add").contentType(MediaType.APPLICATION_FORM_URLENCODED).content("patId=2&=Patient=AchilleDeribreux &notes= This is a comment ...")).andExpect(status().isCreated());
+    }
+
+    @Test
     void addJsonNoteTest() throws Exception {
         //Given
         Note noteToAdd = TestData.getNoteTwo();
@@ -72,6 +82,18 @@ class NoteControllerTest {
         Mockito.when(noteService.updateNote(noteToUpdate)).thenReturn(noteToUpdate);
         //Then
         mockMvc.perform(put("/patHistory/update").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteDTOToUpdate))).andExpect(status().isCreated());
+    }
+
+    @Test
+    void updateNoteExceptionTest() throws Exception {
+        //Given
+        Note noteToUpdate = TestData.getNoteTwo();
+        noteToUpdate.setId(null);
+        NoteDTO noteDTOToUpdate = Mapper.mapNoteToNoteDto(noteToUpdate);
+        //When
+        Mockito.when(noteService.updateNote(noteToUpdate)).thenReturn(noteToUpdate);
+        //Then
+        mockMvc.perform(put("/patHistory/update").contentType(MediaType.APPLICATION_JSON).content(Converter.asJsonString(noteDTOToUpdate))).andExpect(status().isBadRequest());
     }
 
     @Test

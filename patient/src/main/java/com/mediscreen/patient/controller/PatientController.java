@@ -93,7 +93,7 @@ public class PatientController {
         logger.info("put request received at /patients/update, call patient service to update patient for name : {} {}",patient.getGiven(),patient.getFamily());
         if(patient.getId() == null){
             logger.error("impossible to update, no id for patient : {} {}",patient.getGiven(),patient.getFamily());
-            throw new MissingIdException();
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
         }
         Patient patientToUpdate = Mapper.mapPatientDtoToPatient(patient);
         return new ResponseEntity<>(patientService.updatePatient(patientToUpdate),HttpStatus.CREATED);
