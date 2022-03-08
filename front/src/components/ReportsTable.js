@@ -1,6 +1,7 @@
 import {Button, Container, Link} from "@mui/material";
 import {Col, Row} from "react-bootstrap";
 import React from "react";
+import RiskComponent from "./RiskComponent";
 
 class ReportsTable extends React.Component{
 
@@ -8,9 +9,7 @@ class ReportsTable extends React.Component{
         super(props);
         this.state = {
             isLoaded: false,
-            isLoaded2: false,
             patients: [],
-            assessmentMap:{},
             searchTerm:''
         };
     }
@@ -37,39 +36,11 @@ class ReportsTable extends React.Component{
             .catch(function(err){
                 alert(err)
             });
-
-        fetch("http://localhost:8080/getAllAssessments")
-            .then(response => response.json())
-            .then((results) => {
-                this.setState({
-                    isLoaded2: true,
-                    assessmentMap: results
-                });
-            })
-            .catch(function(err){
-                alert(err)
-            });
-    }
-
-    getRisk(id){
-        if(this.state.assessmentMap[id]==="None"){
-            return <p className="btn-success">{this.state.assessmentMap[id]}</p>
-        }
-        else if(this.state.assessmentMap[id]==="In danger"){
-            return <p className="btn-warning">{this.state.assessmentMap[id]}</p>
-        }
-        else if(this.state.assessmentMap[id]==="Early onset"){
-            return <p className="btn-danger">{this.state.assessmentMap[id]}</p>
-        }
-        else if(this.state.assessmentMap[id]==="Borderline"){
-            return <p className="btn-primary">{this.state.assessmentMap[id]}</p>
-        }
-
     }
 
     render() {
-        const  {isLoaded,isLoaded2, patients,assessmentMap } = this.state;
-        if (!isLoaded && !isLoaded2) {
+        const  {isLoaded, patients } = this.state;
+        if (!isLoaded) {
             return <div>Chargement…</div>;
         } else {
             return(
@@ -110,7 +81,7 @@ class ReportsTable extends React.Component{
                                         .map((patient) => (
                                         <tr key={patient.id}>
                                             <td align="center">{patient.given + " " + patient.family}</td>
-                                            <td align="center">{this.getRisk(patient.id)}</td>
+                                            <td align="center"><RiskComponent patient={patient}/></td>
                                             <td align="center">
                                                 <Link href={"/profile?id=" + patient.id}>
                                                     <Button variant="contained">See profile</Button>
