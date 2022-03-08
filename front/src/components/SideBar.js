@@ -23,7 +23,7 @@ class SideBar extends React.Component{
                     </Link>
                 </li>
                 <li className="nav-item  my-2">
-                    <Link className="nav-link" href="#">
+                    <Link className="nav-link" href="/reports">
                         <i className="fas fa-fw fa-book-medical"/>
                         <span><b> Reports</b></span>
                     </Link>

@@ -4,6 +4,7 @@ import {Button, Container, Link, Typography} from "@mui/material";
 import PatientNotesTable from "./PatientNotesTable";
 import PatientsProfileData from "./PatientProfileData";
 import '../assets/vendor/fontawesome-free/css/all.min.css'
+import RiskComponent from "./RiskComponent";
 
 
 class PatientsProfile extends React.Component {
@@ -32,16 +33,16 @@ class PatientsProfile extends React.Component {
         const {patient} = this.props;
         return(
             <Container>
-                <Row className="mt-3">
-                    <Col xs={2}>
+                <Row className="mt-3 align-items-center">
+                    <Col xs={3}>
                         <Link href={"/patients"}>
                             <button className="btn btn-secondary btn-circle btn-lg">
                                 <i className="fas fa-arrow-left" />
                             </button>
                         </Link>
                     </Col>
-                    <Col>
-
+                    <Col xs={6}>
+                        <RiskComponent patient={patient}/>
                     </Col>
                     <Col xs={3}>
                         <button onClick={this.deletePatient} className="btn btn-danger btn-circle btn-lg mx-1">

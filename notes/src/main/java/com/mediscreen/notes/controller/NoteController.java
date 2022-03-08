@@ -94,7 +94,7 @@ public class NoteController {
         logger.info("post request received at /note/update, call note service to update note with id : {}",noteDto.getId());
         if(noteDto.getId() == null){
             logger.error("impossible to update, no id for note of patient id: {}",noteDto.getPatId());
-            throw new MissingIdException();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         else {
             Note note = Mapper.mapNoteDtoToNote(noteDto);
