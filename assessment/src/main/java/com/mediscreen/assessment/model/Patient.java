@@ -1,4 +1,4 @@
-package com.mediscreen.notes.model;
+package com.mediscreen.assessment.model;
 
 import java.util.Date;
 

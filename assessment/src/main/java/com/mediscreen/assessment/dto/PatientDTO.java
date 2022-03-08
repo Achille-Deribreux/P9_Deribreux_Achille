@@ -1,4 +1,4 @@
-package com.mediscreen.notes.dto;
+package com.mediscreen.assessment.dto;
 
 import java.util.Objects;
 
