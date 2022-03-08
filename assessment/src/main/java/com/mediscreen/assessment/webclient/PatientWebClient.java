@@ -18,6 +18,7 @@ public class PatientWebClient {
 
     private final String BASE_URL_LOCALHOST_PATIENT = "http://localhost:8081/patient";
     private final String GET_PATIENT_BY_ID_URL = "/getById";
+    private final String GET_ALL_PATIENTS_URL = "/getAll";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
 
 
@@ -27,6 +28,14 @@ public class PatientWebClient {
                         GET_PATIENT_BY_ID_URL+
                         QUERY_PARAM_PATIENT_ID+patientId
                 , HttpMethod.GET,null,new ParameterizedTypeReference<PatientDTO>() {});
+        return result.getBody();
+    }
+
+    public List<PatientDTO> getAllPatients(){
+        ResponseEntity<List<PatientDTO>> result = restTemplate.exchange(
+                BASE_URL_LOCALHOST_PATIENT+
+                        GET_ALL_PATIENTS_URL
+                , HttpMethod.GET,null,new ParameterizedTypeReference<List<PatientDTO>>() {});
         return result.getBody();
     }
 }

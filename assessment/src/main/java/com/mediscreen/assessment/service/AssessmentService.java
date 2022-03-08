@@ -1,5 +1,6 @@
 package com.mediscreen.assessment.service;
 
+import com.mediscreen.assessment.dto.PatientDTO;
 import com.mediscreen.assessment.model.*;
 import com.mediscreen.assessment.utils.Mapper;
 import com.mediscreen.assessment.webclient.NotesWebClient;
@@ -10,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.*;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.YEARS;
+import java.util.Map;
 
 @Service
 public class AssessmentService {
@@ -22,6 +23,16 @@ public class AssessmentService {
 
     @Autowired
     private NotesWebClient notesWebClient;
+
+    public Map<Integer, String> getAllAssessments() throws ParseException {
+        Map<Integer,String> allAssessmentsMap = new HashMap<>();
+
+        for(PatientDTO patientDTO : patientWebClient.getAllPatients()){
+            Patient patient = Mapper.mapPatientDtoToPatient(patientDTO);
+            allAssessmentsMap.put(patient.getId(),getAssessmentResponse(getRisk(patient.getId())));
+        }
+        return allAssessmentsMap;
+    }
 
     public Integer calculateTerms(Integer patientId){
         List<Note> patientsNotes = notesWebClient.getAllNotesByPatientId(patientId);
@@ -74,21 +85,21 @@ public class AssessmentService {
 
     public String getFullResponse(Integer patientId) throws ParseException {
         Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientById(patientId));
-        return patient.getGivenName()+" "+patient.getFamilyName()+"(age"+getAge(patient.getBirthdate())+")"+getAssessmentResponse(getRisk(patientId));
+        return patient.getGivenName()+" "+patient.getFamilyName()+"(age"+getAge(patient.getBirthdate())+") diabetes assessment is:"+getAssessmentResponse(getRisk(patientId));
     }
 
     public String getAssessmentResponse(Risk risk){
         if(risk.equals(Risk.NONE)){
-            return "diabetes assessment is: None";
+            return "None";
         }
         else if(risk.equals(Risk.BORDERLINE)){
-            return "diabetes assessment is: Borderline";
+            return "Borderline";
         }
         else if(risk.equals(Risk.DANGER)){
-            return "diabetes assessment is: In danger";
+            return "In danger";
         }
         else{
-            return "diabetes assessment is: Early onset";
+            return "Early onset";
         }
     }
 }

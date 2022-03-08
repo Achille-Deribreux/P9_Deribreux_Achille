@@ -7,6 +7,7 @@ import com.mediscreen.assessment.service.AssessmentService;
 import com.mediscreen.assessment.utils.Mapper;
 import com.mediscreen.assessment.webclient.PatientWebClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
+import java.util.Map;
 
 @Controller
 public class AssessmentController {
@@ -26,6 +28,11 @@ public class AssessmentController {
     @GetMapping("/getRiskById")
     public ResponseEntity<Risk> getRiskById(@RequestParam(value="id") Integer patientId) throws ParseException {
         return new ResponseEntity<>(assessmentService.getRisk(patientId),HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllAssessments")
+    public HttpEntity<Map<Integer, String>> getAllAssessments() throws ParseException {
+        return new ResponseEntity<>(assessmentService.getAllAssessments(),HttpStatus.OK);
     }
 
     @PostMapping(value="/assess/id", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
