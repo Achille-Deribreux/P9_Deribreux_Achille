@@ -21,12 +21,12 @@ public class PatientWebClient {
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
 
 
-    public List<PatientDTO> getAllNotesByPatientId(int patientId){
-        ResponseEntity<List<PatientDTO>> result = restTemplate.exchange(
+    public PatientDTO getPatientById(int patientId){
+        ResponseEntity<PatientDTO> result = restTemplate.exchange(
                 BASE_URL_LOCALHOST_PATIENT+
                         GET_PATIENT_BY_ID_URL+
                         QUERY_PARAM_PATIENT_ID+patientId
-                , HttpMethod.GET,null,new ParameterizedTypeReference<List<PatientDTO>>() {});
+                , HttpMethod.GET,null,new ParameterizedTypeReference<PatientDTO>() {});
         return result.getBody();
     }
 }
