@@ -49,43 +49,50 @@ public class AssessmentService {
 
     public long getAge(Date birthdate){
         LocalDate birth = birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        Period interval = Period.between(LocalDate.now(),birth);
+        Period interval = Period.between(birth,LocalDate.now());
         return interval.getYears();
     }
 
     public Risk getRisk(Integer patientId) throws ParseException {
-        Integer termOccurences = calculateTerms(patientId);
+        Integer termOccurrences = calculateTerms(patientId);
         Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientById(patientId));
 
-        if(getAge(patient.getBirthdate()) > 30 && termOccurences >= 8 ){
+        if(getAge(patient.getBirthdate()) > 30 && termOccurrences >= 8 ){
+            //OK
             return Risk.EARLY;
         }
-        else if(patient.getSex().equals(Gender.MALE) && getAge(patient.getBirthdate()) < 30 && termOccurences >= 5 ){
+        else if(patient.getSex().equals(Gender.MALE) && getAge(patient.getBirthdate()) < 30 && termOccurrences >= 5 ){
+            //OK
             return Risk.EARLY;
         }
-        else if(patient.getSex().equals(Gender.FEMALE) && getAge(patient.getBirthdate()) < 30 && termOccurences >= 7 ){
+        else if(patient.getSex().equals(Gender.FEMALE) && getAge(patient.getBirthdate()) < 30 && termOccurrences >= 7 ){
+            //OK
             return Risk.EARLY;
         }
-        else if(patient.getSex().equals(Gender.MALE) && getAge(patient.getBirthdate()) < 30 && termOccurences >= 3 ){
+        else if(patient.getSex().equals(Gender.MALE) && getAge(patient.getBirthdate()) < 30 && termOccurrences >= 3 ){
+            //OK
             return Risk.DANGER;
         }
-        else if(patient.getSex().equals(Gender.FEMALE) && getAge(patient.getBirthdate()) < 30 && termOccurences >= 4 ){
+        else if(patient.getSex().equals(Gender.FEMALE) && getAge(patient.getBirthdate()) < 30 && termOccurrences >= 4 ){
+            //OK
             return Risk.DANGER;
         }
-        else if(getAge(patient.getBirthdate()) > 30 && termOccurences >= 6 ){
+        else if(getAge(patient.getBirthdate()) > 30 && termOccurrences >= 6 ){
+
             return Risk.DANGER;
         }
-        else if(termOccurences >= 2 && getAge(patient.getBirthdate()) > 30){
+        else if(termOccurrences >= 2 && getAge(patient.getBirthdate()) > 30){
             return Risk.BORDERLINE;
         }
         else{
+            //OK
             return Risk.NONE;
         }
     }
 
     public String getFullResponse(Integer patientId) throws ParseException {
         Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientById(patientId));
-        return patient.getGivenName()+" "+patient.getFamilyName()+"(age"+getAge(patient.getBirthdate())+") diabetes assessment is:"+getAssessmentResponse(getRisk(patientId));
+        return patient.getGivenName()+" "+patient.getFamilyName()+" (age "+getAge(patient.getBirthdate())+") diabetes assessment is : "+getAssessmentResponse(getRisk(patientId));
     }
 
     public String getAssessmentResponse(Risk risk){
