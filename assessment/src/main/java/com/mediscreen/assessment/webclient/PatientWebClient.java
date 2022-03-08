@@ -16,7 +16,7 @@ public class PatientWebClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String BASE_URL_LOCALHOST_PATIENT = "localhost:8081/patient";
+    private final String BASE_URL_LOCALHOST_PATIENT = "http://localhost:8081/patient";
     private final String GET_PATIENT_BY_ID_URL = "/getById";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
 

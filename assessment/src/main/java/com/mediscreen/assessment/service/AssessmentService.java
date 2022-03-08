@@ -6,13 +6,13 @@ import com.mediscreen.assessment.webclient.NotesWebClient;
 import com.mediscreen.assessment.webclient.PatientWebClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import static java.time.temporal.ChronoUnit.YEARS;
+
 import java.text.ParseException;
 import java.time.*;
-import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+import static java.time.temporal.ChronoUnit.YEARS;
 
 @Service
 public class AssessmentService {
@@ -38,7 +38,8 @@ public class AssessmentService {
 
     public long getAge(Date birthdate){
         LocalDate birth = birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        return YEARS.between(Instant.now(), birth);
+        Period interval = Period.between(LocalDate.now(),birth);
+        return interval.getYears();
     }
 
     public Risk getRisk(Integer patientId) throws ParseException {
@@ -68,6 +69,26 @@ public class AssessmentService {
         }
         else{
             return Risk.NONE;
+        }
+    }
+
+    public String getFullResponse(Integer patientId) throws ParseException {
+        Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientById(patientId));
+        return patient.getGivenName()+" "+patient.getFamilyName()+"(age"+getAge(patient.getBirthdate())+")"+getAssessmentResponse(getRisk(patientId));
+    }
+
+    public String getAssessmentResponse(Risk risk){
+        if(risk.equals(Risk.NONE)){
+            return "diabetes assessment is: None";
+        }
+        else if(risk.equals(Risk.BORDERLINE)){
+            return "diabetes assessment is: Borderline";
+        }
+        else if(risk.equals(Risk.DANGER)){
+            return "diabetes assessment is: In danger";
+        }
+        else{
+            return "diabetes assessment is: Early onset";
         }
     }
 }

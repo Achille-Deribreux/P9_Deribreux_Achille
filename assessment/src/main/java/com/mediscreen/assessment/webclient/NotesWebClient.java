@@ -16,7 +16,7 @@ public class NotesWebClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String BASE_URL_LOCALHOST_NOTES = "localhost:8082/patHistory";
+    private final String BASE_URL_LOCALHOST_NOTES = "http://localhost:8082/patHistory";
     private final String GET_ALL_NOTES_BY_ID_URL = "/getAllNotesByPatientId";
     private final String QUERY_PARAM_PATIENT_ID = "?patientId=";
 
