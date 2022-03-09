@@ -70,7 +70,7 @@ class PatientsProfile extends React.Component {
                         <h4>See all patient's notes :</h4>
                     </Col>
                     <Col xs={3}>
-                        <Link href="/addNote">
+                        <Link href={"/addNote?id="+patient.id}>
                             <Button variant="contained" color="primary" className="mx-1">Add Note</Button>
                         </Link>
                     </Col>

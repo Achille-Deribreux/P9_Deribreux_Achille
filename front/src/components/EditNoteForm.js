@@ -24,24 +24,24 @@ class EditNoteForm extends React.Component{
     }
 
     getData() {
-        fetch("http://localhost:8082/patHistory/getById?noteId="+this.getNoteId())
+        fetch("http://localhost:8081/patient/getAll")
             .then(response => response.json())
-            .then((results) => {
+            .then((patients) => {
                 this.setState({
-                    isLoaded: true,
-                    comment: results.comment,
-                    patientId:results.patId
+                    patients:patients,
+                    isLoaded2: true
                 });
             })
             .catch(function (err) {
                 alert(err)
             });
-        fetch("http://localhost:8081/patient/getAll")
+        fetch("http://localhost:8082/patHistory/getById?noteId="+this.getNoteId())
             .then(response => response.json())
-            .then((patients) => {
+            .then((results) => {
                 this.setState({
-                    isLoaded2: true,
-                    patients:patients
+                    comment: results.comment,
+                    patientId:results.patientId,
+                    isLoaded: true
                 });
             })
             .catch(function (err) {
@@ -104,7 +104,7 @@ class EditNoteForm extends React.Component{
                                 <span className="input-group-text">Patient : </span>
                                 <Form.Select value={this.state.patientId} onChange={this.handlePatientId}>
                                     {patients.map((patient) => (
-                                        <option value={patient.id}>{patient.id}</option>
+                                        <option key={patient.id} value={patient.id}>{patient.id}</option>
                                     ))}
                                 </Form.Select>
                             </div>
