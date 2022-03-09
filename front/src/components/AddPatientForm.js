@@ -114,6 +114,7 @@ class AddPatientForm extends React.Component {
                             <div className="input-group m-4">
                                 <span className="input-group-text">Gender</span>
                                 <Form.Select value={this.state.sex} onChange={this.handleSex}>
+                                    <option value="">Please select an option</option>
                                     <option value="F">Female</option>
                                     <option value="M">Male</option>
                                 </Form.Select>

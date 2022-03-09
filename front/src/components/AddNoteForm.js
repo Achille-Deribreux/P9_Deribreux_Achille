@@ -27,6 +27,16 @@ class AddNoteForm extends React.Component{
             .catch(function (err) {
                 alert(err)
             });
+        this.getId()
+    }
+
+    getId() {
+        let id = new URL(document.location).searchParams.get('id');
+        if(id != null){
+            this.setState({
+                patientId : id
+            })
+        }
     }
 
     handleSubmit = () => {
@@ -83,7 +93,7 @@ class AddNoteForm extends React.Component{
                                 <span className="input-group-text">Patient : </span>
                                 <Form.Select value={this.state.patientId} onChange={this.handlePatient}>
                                     {patients.map((patient) =>(
-                                        <option value={patient.id}>{patient.given+" "+patient.family}</option>
+                                        <option key={patient.id} value={patient.id}>{patient.given+" "+patient.family}</option>
                                         ))}
                                 </Form.Select>
                             </div>
