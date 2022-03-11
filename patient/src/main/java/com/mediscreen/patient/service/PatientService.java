@@ -6,6 +6,7 @@ import com.mediscreen.patient.exception.customexceptions.PatientNotFoundExceptio
 import com.mediscreen.patient.model.Patient;
 import com.mediscreen.patient.repository.PatientRepository;
 import com.mediscreen.patient.utils.Mapper;
+import com.mediscreen.patient.webclient.NotesWebClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class PatientService {
 
     @Autowired
     private PatientRepository patientsRepository;
+
+    @Autowired
+    private NotesWebClient notesWebClient;
 
     private Logger logger = LoggerFactory.getLogger(PatientService.class);
 
@@ -90,7 +94,7 @@ public class PatientService {
     public void deletePatientById(Integer id){
         Patient patientToDelete = getPatientById(id);
         logger.info("delete patient with id : {}",id);
-
+        notesWebClient.deleteAllNotesByPatientId(id);
         patientsRepository.delete(patientToDelete);
     }
 
