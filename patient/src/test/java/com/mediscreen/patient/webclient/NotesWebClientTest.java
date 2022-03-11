@@ -26,7 +26,7 @@ public class NotesWebClientTest {
     NotesWebClient notesWebClient;
 
     private final String BASE_URL_LOCALHOST_NOTES = "http://localhost:8082/patHistory";
-    private final String DELETE_ALL_BY_PATIENT_ID_URL = "/deleteAllByPatietnId";
+    private final String DELETE_ALL_BY_PATIENT_ID_URL = "/deleteAllByPatientId";
     private final String QUERY_PARAM_PATIENT_ID = "?patientId=";
 
     @Test

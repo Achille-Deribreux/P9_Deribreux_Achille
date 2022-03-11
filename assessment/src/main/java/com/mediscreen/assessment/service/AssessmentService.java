@@ -5,6 +5,8 @@ import com.mediscreen.assessment.model.*;
 import com.mediscreen.assessment.utils.Mapper;
 import com.mediscreen.assessment.webclient.NotesWebClient;
 import com.mediscreen.assessment.webclient.PatientWebClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +26,15 @@ public class AssessmentService {
     @Autowired
     private NotesWebClient notesWebClient;
 
+    private final Logger logger = LoggerFactory.getLogger(AssessmentService.class);
+
+    /**
+     * Method which get assessment for each patient
+     * @return map with patientId as key and risk for the patient as value
+     */
     public Map<Integer, String> getAllAssessments() throws ParseException {
         Map<Integer,String> allAssessmentsMap = new HashMap<>();
-
+        logger.info("call patient web client to getAllPatients in order to generate all assessments");
         for(PatientDTO patientDTO : patientWebClient.getAllPatients()){
             Patient patient = Mapper.mapPatientDtoToPatient(patientDTO);
             allAssessmentsMap.put(patient.getId(),getAssessmentResponse(getRisk(patient.getId())));
@@ -34,7 +42,14 @@ public class AssessmentService {
         return allAssessmentsMap;
     }
 
+    /**
+     * Method which calculates the amount of risky terms that are present in the notes for a given patient
+     * @param patientId id of the patient for which you want to calculate the terms
+     * @return number of terms that are present in the patient's notes
+     */
     public Integer calculateTerms(Integer patientId){
+        logger.info("calculate terms for patient {}",patientId );
+        logger.info("call notes web client to get all notes for patient {}",patientId);
         List<Note> patientsNotes = notesWebClient.getAllNotesByPatientId(patientId);
         int counter = 0;
         for(Note patientNote :  patientsNotes){
@@ -47,13 +62,25 @@ public class AssessmentService {
         return counter;
     }
 
+    /**
+     * Method who calculates the age of a patient, based on his birthdate
+     * @param birthdate birthdate of the patient
+     * @return age of the patient
+     */
     public long getAge(Date birthdate){
+        logger.info("calculate age from birthdate : {}",birthdate);
         LocalDate birth = birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Period interval = Period.between(birth,LocalDate.now());
         return interval.getYears();
     }
 
+    /**
+     * Method who calculates the risk of a patient based on his sex, age and the sum of risky terms that are present in his notes
+     * @param patientId id of the patient for which you want to calculate the risk
+     * @return diabetes risk of the patient
+     */
     public Risk getRisk(Integer patientId) throws ParseException {
+        logger.info("get risk level for patient id : {}",patientId);
         Integer termOccurrences = calculateTerms(patientId);
         Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientById(patientId));
 
@@ -90,12 +117,24 @@ public class AssessmentService {
         }
     }
 
+    /**
+     * Method who calculates the risk for a patient and generates a full sentence with the risk, the age and the name of the patient
+     * @param patientId id of the patient for which you want the sentence
+     * @return sentence with the risk, the age and the name of the patient
+     */
     public String getFullResponse(Integer patientId) throws ParseException {
+        logger.info("get full response (risk, name and age) for patientId{}",patientId);
         Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientById(patientId));
         return patient.getGivenName()+" "+patient.getFamilyName()+" (age "+getAge(patient.getBirthdate())+") diabetes assessment is : "+getAssessmentResponse(getRisk(patientId));
     }
 
+    /**
+     * Method which respond the risk in a full string format for a given risk (in Risk format)
+     * @param risk the risk you want to convert in String
+     * @return  full string format of the given risk
+     */
     public String getAssessmentResponse(Risk risk){
+        logger.info("convert risk {} into a full risk string format",risk);
         if(risk.equals(Risk.NONE)){
             return "None";
         }
