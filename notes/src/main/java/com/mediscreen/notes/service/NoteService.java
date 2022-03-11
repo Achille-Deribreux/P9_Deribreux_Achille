@@ -77,4 +77,14 @@ public class NoteService {
         Note noteToDelete = getNoteById(id);
         noteRepository.delete(noteToDelete);
     }
+
+    /**
+     * Method who delete all the notes of a given patient
+     * @param patientId id of the patient for which you want to delete all notes
+     */
+    public void deleteAllByPatientId(Integer patientId){
+        logger.info("delete all notes for patient id : {}",patientId);
+        List<Note> patientsNoteList = getAllNotesByPatientId(patientId);
+        noteRepository.deleteAll(patientsNoteList);
+    }
 }

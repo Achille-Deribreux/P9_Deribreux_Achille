@@ -114,4 +114,16 @@ public class NoteController {
         noteService.deleteNote(noteId);
         return new ResponseEntity<>("Note successfully deleted", HttpStatus.OK);
     }
+
+    /**
+     * This method answer to a request at /deleteAllByPatientId and delete all the notes in the db for a given patient
+     * @param patientId id of the patient for which you want to delete all notes
+     * @return response entity with status code 200 if everything is ok
+     */
+    @DeleteMapping("/deleteAllByPatietnId")
+    public ResponseEntity<String> deleteAllNotesByPatientId(@RequestParam(value = "patientId") Integer patientId){
+        logger.info("delete request received at /note/deleteAllByPatientId for patient id : {}",patientId);
+        noteService.deleteAllByPatientId(patientId);
+        return new ResponseEntity<>("All the patient's notes successfully deleted", HttpStatus.OK);
+    }
 }

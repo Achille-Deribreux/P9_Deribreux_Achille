@@ -106,4 +106,15 @@ class NoteControllerTest {
         //Then
         mockMvc.perform(delete("/patHistory/delete").param("noteId",noteId)).andExpect(status().isOk());
     }
+
+    @Test
+    void deleteAllNotesByPatientId() throws Exception {
+        //Given
+        Integer patientId = 3;
+        //When
+        Mockito.when(noteService.getAllNotesByPatientId(patientId)).thenReturn(TestData.getNoteList());
+        doNothing().when(noteService).deleteAllByPatientId(patientId);
+        //Then
+        mockMvc.perform(delete("/patHistory/deleteAllByPatietnId").param("patientId", String.valueOf(patientId))).andExpect(status().isOk());
+    }
 }

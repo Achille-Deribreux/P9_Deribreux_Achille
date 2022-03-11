@@ -89,11 +89,10 @@ public class PatientService {
      */
     public void deletePatientById(Integer id){
         Patient patientToDelete = getPatientById(id);
-        logger.info("delete patient with id : {}",patientToDelete.getId());
+        logger.info("delete patient with id : {}",id);
+
         patientsRepository.delete(patientToDelete);
     }
-
-
 
 
 }

@@ -110,4 +110,17 @@ import static org.mockito.Mockito.doNothing;
         //Then
         Mockito.verify(noteRepository,Mockito.times(1)).delete(note);
     }
+
+    @Test
+    void deleteAllByPatientId() {
+        //Given
+        Integer patientId = 2;
+        List<Note> noteList = TestData.getNoteList();
+        //When
+        Mockito.when(noteRepository.findAllByPatientId(patientId)).thenReturn(noteList);
+        doNothing().when(noteRepository).deleteAll(noteList);
+        noteService.deleteAllByPatientId(patientId);
+        //Then
+        Mockito.verify(noteRepository,Mockito.times(1)).deleteAll(noteList);
+    }
 }

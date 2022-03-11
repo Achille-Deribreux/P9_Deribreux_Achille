@@ -13,8 +13,7 @@ public class Patient {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    //TODO : fix given ame in GIVEN NAME
-    @Column(name = "given_ame")
+    @Column(name = "given_name")
     private String givenName;
 
     @Column(name = "family_name")
