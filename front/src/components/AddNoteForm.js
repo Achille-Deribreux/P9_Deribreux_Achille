@@ -92,6 +92,7 @@ class AddNoteForm extends React.Component{
                             <div className="input-group m-4">
                                 <span className="input-group-text">Patient : </span>
                                 <Form.Select value={this.state.patientId} onChange={this.handlePatient}>
+                                    <option value="">Please select an option</option>
                                     {patients.map((patient) =>(
                                         <option key={patient.id} value={patient.id}>{patient.given+" "+patient.family}</option>
                                         ))}
