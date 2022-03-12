@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `patients` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `given_ame` VARCHAR(255) NOT NULL,
+  `given_name` VARCHAR(255) NOT NULL,
   `family_name` VARCHAR(255) NOT NULL,
   `birth_date` DATE NOT NULL,
   `gender` VARCHAR(255) NOT NULL,

@@ -10,8 +10,20 @@ services:
         environment:
             - MONGO_INITDB_ROOT_USERNAME=rootuser
             - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    mysqldb:
+        image: mysql:5.7
+        container_name: mysqldb
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: mediscreen
+            MYSQL_ROOT_PASSWORD: Root.1234
+        volumes:
+            - datasql:/datasql
+
 volumes:
     data: {}
+    datasql : {}
 
 networks:
     default:
