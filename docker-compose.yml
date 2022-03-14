@@ -11,6 +11,7 @@ services:
             - MONGO_INITDB_ROOT_USERNAME=rootuser
             - MONGO_INITDB_ROOT_PASSWORD=rootpass
     mysqldb:
+        platform: linux/x86_64
         image: mysql:5.7
         container_name: mysqldb
         ports:
