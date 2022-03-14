@@ -20,6 +20,7 @@ services:
             MYSQL_ROOT_PASSWORD: Root.1234
         volumes:
             - datasql:/datasql
+            - ./init:/docker-entrypoint-initdb.d
     patient:
         build : ./patient/.
         image : patient
