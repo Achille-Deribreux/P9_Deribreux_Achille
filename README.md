@@ -30,3 +30,41 @@ Mediscreen is an application that allows to detect a level of risk of diabetes i
 <li>Add, edit and delete patient history notes.</li>
 <li>Assess the level of risk of diabetes in patients using the content of the notes.</li>
 </ul>
+
+<h3>
+Run project :
+</h3>
+
+<br><br>
+
+<h3>
+Test reports
+</h3>
+
+<h4>
+To generate test reports, use command : 
+</h4>
+
+<h4>
+Microservice Patient : 
+</h4>
+
+<p align="center">
+    <img src="./testreports/patient_testreport.PNG">
+</p>
+
+<h4>
+Microservice Notes : 
+</h4>
+
+<p align="center">
+    <img src="./testreports/notes_testreport.PNG">
+</p>
+
+<h4>
+Microservice Assessment : 
+</h4>
+
+<p align="center">
+    <img src="./testreports/assessment_testreport.PNG">
+</p>
