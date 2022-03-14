@@ -1,5 +1,5 @@
 import React from "react";
-import {Col, Row, Toast} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import {Button, Container, Link, Typography} from "@mui/material";
 import PatientNotesTable from "./PatientNotesTable";
 import PatientsProfileData from "./PatientProfileData";
@@ -8,10 +8,6 @@ import RiskComponent from "./RiskComponent";
 
 
 class PatientsProfile extends React.Component {
-
-    constructor(props, context) {
-        super(props, context);
-    }
 
     deletePatient(){
         fetch("http://localhost:8081/patient/delete?id="+ new URL(document.location).searchParams.get('id'), {

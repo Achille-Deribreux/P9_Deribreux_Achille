@@ -3,13 +3,6 @@ import {
     Button,
     Container,
     Link,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow
 } from "@mui/material";
 import {Col, Row} from "react-bootstrap";
 

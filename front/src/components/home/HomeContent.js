@@ -12,10 +12,14 @@ class HomeContent extends React.Component{
         return(
             <Container>
                 <ReportsDataRow />
-                <Row>
-                    <Col>
-                        <img src={require('../../mediscreen-logo.png')} width="200" alt="cam"/>
-                        TO BE COMPLETED
+                <Row className="my-5">
+                    <Col className="my-5">
+                        <h1 className="my-5"> Welcome to the awesome Mediscreen app ! </h1>
+                    </Col>
+                </Row>
+                <Row className="my-5">
+                    <Col className="my-5">
+                        <h2 className="my-5"> Check patients, notes or reports ! </h2>
                     </Col>
                 </Row>
                 <Row>

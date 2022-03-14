@@ -14,6 +14,7 @@ class Patients extends React.Component{
 
     componentDidMount() {
         this.getData();
+        document.title = "Mediscreen | Patients";
     }
 
     getData(){

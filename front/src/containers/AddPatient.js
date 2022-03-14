@@ -4,6 +4,10 @@ import AddPatientForm from "../components/AddPatientForm";
 
 class AddPatient extends React.Component{
 
+    componentDidMount() {
+        document.title = "Mediscreen | Add Patient";
+    }
+
     render() {
         return(
             <div id="wrapper">

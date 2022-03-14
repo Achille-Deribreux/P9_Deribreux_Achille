@@ -4,6 +4,10 @@ import PatientsProfileForm from "../components/PatientProfileForm";
 
 class EditProfile extends React.Component{
 
+    componentDidMount() {
+        document.title = "Mediscreen | Edit Patient";
+    }
+
     render() {
         return(
         <div id="wrapper">

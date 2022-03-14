@@ -1,14 +1,25 @@
 package com.mediscreen.patient.testutils;
 
+import com.mediscreen.patient.dto.PatientDTO;
 import com.mediscreen.patient.model.Gender;
 import com.mediscreen.patient.model.Patient;
+import com.mediscreen.patient.utils.Mapper;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
 
 public class TestData {
     public static List<Patient> getPatientList(){
         return new ArrayList<>(Arrays.asList(getPatientOne(),getPatientTwo()));
+    }
+
+    public static List<PatientDTO> getPatientDTOList(){
+        return new ArrayList<>(Arrays.asList(
+                Mapper.mapPatientToPatientDto(getPatientOne()),
+                Mapper.mapPatientToPatientDto(getPatientTwo())
+        ));
     }
 
     public static Patient getPatientOne(){

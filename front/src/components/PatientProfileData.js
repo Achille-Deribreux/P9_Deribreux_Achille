@@ -1,15 +1,9 @@
 import React from "react";
-import {Col, Form, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import {Paper} from "@mui/material";
 
 
 class PatientsProfileData extends React.Component {
-
-
-    constructor(props, context) {
-        super(props, context);
-    }
-
 
     render() {
         const {patient} = this.props;

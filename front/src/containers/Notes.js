@@ -15,6 +15,7 @@ class Notes extends React.Component {
 
     componentDidMount() {
         this.getData();
+        document.title = "Mediscreen | Notes";
     }
 
     getData() {

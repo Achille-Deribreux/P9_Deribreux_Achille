@@ -1,10 +1,12 @@
 package com.mediscreen.patient.service;
 
+import com.mediscreen.patient.dto.PatientDTO;
 import com.mediscreen.patient.exception.customexceptions.PatientAlreadyExistException;
 import com.mediscreen.patient.exception.customexceptions.PatientNotFoundException;
 import com.mediscreen.patient.model.Patient;
 import com.mediscreen.patient.repository.PatientRepository;
 import com.mediscreen.patient.testutils.TestData;
+import com.mediscreen.patient.webclient.NotesWebClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doNothing;
 
 @SpringBootTest
 class PatientServiceTest {
@@ -23,20 +26,23 @@ class PatientServiceTest {
     @Mock
     private PatientRepository patientRepository;
 
+    @Mock
+    private NotesWebClient notesWebClient;
+
     @InjectMocks
     private PatientService patientService;
-/*
+
     @Test
     void getAllPatientTest() {
         //Given
-        List<Patient> expected = TestData.getPatientList();
-        List<Patient> result;
+        List<PatientDTO> expected = TestData.getPatientDTOList();
+        List<PatientDTO> result;
         //When
-        Mockito.when(patientRepository.findAll()).thenReturn(expected);
+        Mockito.when(patientRepository.findAll()).thenReturn(TestData.getPatientList());
         result = patientService.getAllPatient();
         //Then
         Assertions.assertEquals(expected,result);
-    }*/
+    }
 
     @Test
     void getPatientByIdTest() {
@@ -113,7 +119,7 @@ class PatientServiceTest {
         //Then
         Mockito.verify(patientRepository,Mockito.times(1)).save(patientToUpdate);
     }
-/*
+
     @Test
     void deletePatientByIdTest() {
         //Given
@@ -122,8 +128,9 @@ class PatientServiceTest {
         //When
         patientToDelete.setId(id);
         Mockito.when(patientRepository.findById(id)).thenReturn(Optional.of(patientToDelete));
+        doNothing().when(notesWebClient).deleteAllNotesByPatientId(id);
         patientService.deletePatientById(id);
         //Then
         Mockito.verify(patientRepository,Mockito.times(1)).delete(patientToDelete);
-    }*/
+    }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
-import FullNote from "./FullNote";
 import Note from "./Note";
 import {Link} from "@mui/material";
 
