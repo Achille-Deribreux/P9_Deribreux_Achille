@@ -113,7 +113,7 @@ class PatientServiceTest {
         //Then
         Mockito.verify(patientRepository,Mockito.times(1)).save(patientToUpdate);
     }
-
+/*
     @Test
     void deletePatientByIdTest() {
         //Given
@@ -125,5 +125,5 @@ class PatientServiceTest {
         patientService.deletePatientById(id);
         //Then
         Mockito.verify(patientRepository,Mockito.times(1)).delete(patientToDelete);
-    }
+    }*/
 }

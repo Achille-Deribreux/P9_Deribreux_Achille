@@ -4,6 +4,7 @@ import com.mediscreen.assessment.model.Note;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,15 @@ public class NotesWebClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String BASE_URL_LOCALHOST_NOTES = "http://localhost:8082/patHistory";
+    @Value("${mediscreen.main.notesurl}")
+    private String BASE_URL_LOCALHOST_NOTES;
+
     private final String GET_ALL_NOTES_BY_ID_URL = "/getAllNotesByPatientId";
     private final String QUERY_PARAM_PATIENT_ID = "?patientId=";
 
+    public void setBASE_URL_LOCALHOST_NOTES(String BASE_URL_LOCALHOST_NOTES) {
+        this.BASE_URL_LOCALHOST_NOTES = BASE_URL_LOCALHOST_NOTES;
+    }
 
     /**
      * Method which make a request to the notes MS to get all the notes for a given patient

@@ -4,6 +4,7 @@ import com.mediscreen.assessment.dto.PatientDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,16 @@ public class PatientWebClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String BASE_URL_LOCALHOST_PATIENT = "http://localhost:8081/patient";
+    @Value("${mediscreen.main.patientsurl}")
+    private String BASE_URL_LOCALHOST_PATIENT;
+
     private final String GET_PATIENT_BY_ID_URL = "/getById";
     private final String GET_ALL_PATIENTS_URL = "/getAll";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
+
+    public void setBASE_URL_LOCALHOST_PATIENT(String BASE_URL_LOCALHOST_PATIENT) {
+        this.BASE_URL_LOCALHOST_PATIENT = BASE_URL_LOCALHOST_PATIENT;
+    }
 
     /**
      * Method which make a request to the patient MS to get a patient by his id

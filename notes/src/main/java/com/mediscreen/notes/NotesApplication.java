@@ -10,4 +10,15 @@ public class NotesApplication {
 		SpringApplication.run(NotesApplication.class, args);
 	}
 
+	//TODO remove this
+	/*
+	front:
+        build: ./front/.
+        image: front
+        container_name: front
+        ports:
+            -   3000:3000
+
+	 */
+
 }

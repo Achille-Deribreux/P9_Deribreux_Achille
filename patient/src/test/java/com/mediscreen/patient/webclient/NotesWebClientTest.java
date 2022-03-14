@@ -1,6 +1,7 @@
 package com.mediscreen.patient.webclient;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -28,6 +29,11 @@ public class NotesWebClientTest {
     private final String BASE_URL_LOCALHOST_NOTES = "http://localhost:8082/patHistory";
     private final String DELETE_ALL_BY_PATIENT_ID_URL = "/deleteAllByPatientId";
     private final String QUERY_PARAM_PATIENT_ID = "?patientId=";
+
+    @BeforeEach
+    void setUp() {
+        notesWebClient.setBASE_URL_LOCALHOST_NOTES(BASE_URL_LOCALHOST_NOTES);
+    }
 
     @Test
     void deleteAllNotesByPatientIdTest() {

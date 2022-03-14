@@ -3,10 +3,12 @@ package com.mediscreen.assessment.webclient;
 import com.mediscreen.assessment.dto.PatientDTO;
 import com.mediscreen.assessment.testutils.TestData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -25,10 +27,17 @@ public class PatientWebClientTest {
     @InjectMocks
     PatientWebClient patientWebClient;
 
-    private final String BASE_URL_LOCALHOST_PATIENT = "http://localhost:8081/patient";
+    @Value("${mediscreen.main.patientsurl}")
+    private String BASE_URL_LOCALHOST_PATIENT;
+
     private final String GET_PATIENT_BY_ID_URL = "/getById";
     private final String GET_ALL_PATIENTS_URL = "/getAll";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
+
+    @BeforeEach
+    void setUp() {
+        patientWebClient.setBASE_URL_LOCALHOST_PATIENT(BASE_URL_LOCALHOST_PATIENT);
+    }
 
     @Test
     void getPatientByIdTest() {

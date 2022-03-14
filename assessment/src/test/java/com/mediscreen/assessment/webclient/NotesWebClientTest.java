@@ -3,10 +3,12 @@ package com.mediscreen.assessment.webclient;
 import com.mediscreen.assessment.model.Note;
 import com.mediscreen.assessment.testutils.TestData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -25,9 +27,16 @@ class NotesWebClientTest {
     @InjectMocks
     NotesWebClient notesWebClient;
 
-    private final String BASE_URL_LOCALHOST_NOTES = "http://localhost:8082/patHistory";
+    @Value("${mediscreen.main.notesurl}")
+    private String BASE_URL_LOCALHOST_NOTES;
+
     private final String GET_ALL_NOTES_BY_ID_URL = "/getAllNotesByPatientId";
     private final String QUERY_PARAM_PATIENT_ID = "?patientId=";
+
+    @BeforeEach
+    void setUp() {
+        notesWebClient.setBASE_URL_LOCALHOST_NOTES(BASE_URL_LOCALHOST_NOTES);
+    }
 
     @Test
     void getAllNotesByPatientIdTest() {

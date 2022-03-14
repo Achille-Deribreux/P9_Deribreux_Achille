@@ -20,6 +20,43 @@ services:
             MYSQL_ROOT_PASSWORD: Root.1234
         volumes:
             - datasql:/datasql
+    patient:
+        build : ./patient/.
+        image : patient
+        container_name: patient
+        environment:
+            NOTE_URL: http://notes:8082/patHistory
+            MYSQL_HOST : mysqldb
+            MYSQL_PORT : 3306
+            MYSQL_DATABASE: mediscreen
+            MYSQL_USER: root
+            MYSQL_PASSWORD: Root.1234
+        depends_on:
+            -   mysqldb
+        ports:
+            -   8081:8081
+    notes:
+        build: ./notes/.
+        image: notes
+        container_name: notes
+        environment:
+            DB_HOST : mongodb
+        depends_on:
+            -   mongodb
+        ports:
+            - 8082:8082
+    assessment:
+        build: ./assessment/.
+        image: assessment
+        container_name: assessment
+        environment:
+            NOTE_URL: http://notes:8082/patHistory
+            PATIENT_URL: http://patient:8081/patient
+        depends_on:
+            -   notes
+            - patient
+        ports:
+            - 8080:8080
 
 volumes:
     data: {}
