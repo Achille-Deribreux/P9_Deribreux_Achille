@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 
 @ControllerAdvice
 public class ExceptionsHandler {
-//TODO SET LOGS
+
     @ExceptionHandler(NoteNotFoundException.class)
     public ResponseEntity<Object>handeNoteNotFoundException(NoteNotFoundException e){
         CustomErrorResponse errorResponse = new CustomErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND, ZonedDateTime.now());
