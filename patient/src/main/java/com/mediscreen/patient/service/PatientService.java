@@ -61,6 +61,16 @@ public class PatientService {
     }
 
     /**
+     * Method which search a patient based on his name
+     * @param familyName familyName of the patient that you want
+     * @return the wanted patient
+     */
+    public Patient getPatientByFamilyName(String familyName){
+        logger.info("search for patient : {}",familyName);
+        return patientsRepository.findByFamilyName(familyName).orElseThrow(()-> new PatientNotFoundException("name :   "+familyName));
+    }
+
+    /**
      * Method which add a patient in the database
      * @param patient the patient that you want to add
      * @return the added patient (with id)

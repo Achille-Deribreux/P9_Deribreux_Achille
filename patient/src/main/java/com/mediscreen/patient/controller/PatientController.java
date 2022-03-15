@@ -60,6 +60,17 @@ public class PatientController {
     }
 
     /**
+     * This method answer to a request at /patient/getByFamilyName
+     * @param familyName lastname of the patient that you want
+     * @return the wanted patient and status code 200 if everything is ok
+     */
+    @GetMapping("/getByFamilyName")
+    public ResponseEntity<PatientDTO> getPatientByFamilyName(@RequestParam(value = "familyName") String familyName ){
+        logger.info("get request received at /patients/getByFamilyName, call patient service to get patient for familyName : {}",familyName);
+        return new ResponseEntity<>(Mapper.mapPatientToPatientDto(patientService.getPatientByFamilyName(familyName)),HttpStatus.OK);
+    }
+
+    /**
      * This method answer to a request at /patient/add
      * @param patient patient that you want to add
      * @return the added patient (with id) and status code 201 if everything is ok

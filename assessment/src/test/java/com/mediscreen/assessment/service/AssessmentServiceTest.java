@@ -208,6 +208,21 @@ import java.util.Map;
     }
 
     @Test
+    void getFullResponseByFamilyName() throws ParseException {
+        //Given
+        String familyName = "deribreux";
+        String expected = "achille deribreux (age 2) diabetes assessment is : None";
+        String result;
+        //When
+        Mockito.when(patientWebClient.getPatientById(1)).thenReturn(TestData.getOnePatientDTO());
+        Mockito.when(patientWebClient.getPatientByFamilyName(familyName)).thenReturn(TestData.getOnePatientDTO());
+        Mockito.when(notesWebClient.getAllNotesByPatientId(1)).thenReturn(new ArrayList<>());
+        result = assessmentService.getFullResponseByFamilyName(familyName);
+        //Then
+        Assertions.assertEquals(expected,result);
+    }
+
+    @Test
     void getAssessmentResponseTest() {
         Assertions.assertEquals("None",assessmentService.getAssessmentResponse(Risk.NONE));
         Assertions.assertEquals("Borderline",assessmentService.getAssessmentResponse(Risk.BORDERLINE));

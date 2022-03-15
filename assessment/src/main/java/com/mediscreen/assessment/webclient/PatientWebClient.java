@@ -25,8 +25,10 @@ public class PatientWebClient {
     private String BASE_URL_LOCALHOST_PATIENT;
 
     private final String GET_PATIENT_BY_ID_URL = "/getById";
+    private final String GET_PATIENT_BY_FAMILY_NAME_URL = "/getByFamilyName";
     private final String GET_ALL_PATIENTS_URL = "/getAll";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
+    private final String QUERY_PARAM_PATIENT_FAMILY_NAME = "?familyName=";
 
     public void setBASE_URL_LOCALHOST_PATIENT(String BASE_URL_LOCALHOST_PATIENT) {
         this.BASE_URL_LOCALHOST_PATIENT = BASE_URL_LOCALHOST_PATIENT;
@@ -43,6 +45,21 @@ public class PatientWebClient {
                 BASE_URL_LOCALHOST_PATIENT+
                         GET_PATIENT_BY_ID_URL+
                         QUERY_PARAM_PATIENT_ID+patientId
+                , HttpMethod.GET,null,new ParameterizedTypeReference<PatientDTO>() {});
+        return result.getBody();
+    }
+
+    /**
+     * Method which make a request to the patient MS to get a patient by his family name
+     * @param familyName family name of the patient that you want
+     * @return the wanted patient
+     */
+    public PatientDTO getPatientByFamilyName(String familyName){
+        logger.info("call the patient MS to get the patient with family name : {}",familyName);
+        ResponseEntity<PatientDTO> result = restTemplate.exchange(
+                BASE_URL_LOCALHOST_PATIENT+
+                        GET_PATIENT_BY_FAMILY_NAME_URL+
+                        QUERY_PARAM_PATIENT_FAMILY_NAME+familyName
                 , HttpMethod.GET,null,new ParameterizedTypeReference<PatientDTO>() {});
         return result.getBody();
     }

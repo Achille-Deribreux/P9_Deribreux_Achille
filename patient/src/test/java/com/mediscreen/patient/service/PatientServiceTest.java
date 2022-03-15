@@ -86,6 +86,25 @@ class PatientServiceTest {
     }
 
     @Test
+    void getPatientByFamilyNameTest() {
+        //Given
+        String familyName = "Deribreux";
+        Patient expected = TestData.getPatientOne();
+        Patient result;
+        //When
+        Mockito.when(patientRepository.findByFamilyName(familyName)).thenReturn(Optional.of(expected));
+        result = patientService.getPatientByFamilyName(familyName);
+        //Then
+        Assertions.assertEquals(expected,result);
+    }
+
+    @Test
+    void getPatientByFamilyNameExceptionTest() {
+        //When & Then
+        assertThrows(PatientNotFoundException.class, () -> patientService.getPatientByFamilyName("aeztty"));
+    }
+
+    @Test
     void addPatientTest() {
         //Given
         Patient patientToAdd = TestData.getPatientOne();

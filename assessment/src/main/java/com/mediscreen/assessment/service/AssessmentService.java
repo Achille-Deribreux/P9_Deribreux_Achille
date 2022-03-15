@@ -118,7 +118,18 @@ public class AssessmentService {
     }
 
     /**
-     * Method who calculates the risk for a patient and generates a full sentence with the risk, the age and the name of the patient
+     * Method who calculates the risk for a patient and generates a full sentence with the risk, the age and the name of the patient, based on the patient's family name
+     * @param familyName family name of the patient for which you want the sentence
+     * @return sentence with the risk, the age and the name of the patient
+     */
+    public String getFullResponseByFamilyName(String familyName) throws ParseException {
+        logger.info("get full response (risk, name and age) for patient family name : {}",familyName);
+        Patient patient = Mapper.mapPatientDtoToPatient(patientWebClient.getPatientByFamilyName(familyName));
+        return patient.getGivenName()+" "+patient.getFamilyName()+" (age "+getAge(patient.getBirthdate())+") diabetes assessment is : "+getAssessmentResponse(getRisk(patient.getId()));
+    }
+
+    /**
+     * Method who calculates the risk for a patient and generates a full sentence with the risk, the age and the name of the patient, based on the patient's id
      * @param patientId id of the patient for which you want the sentence
      * @return sentence with the risk, the age and the name of the patient
      */

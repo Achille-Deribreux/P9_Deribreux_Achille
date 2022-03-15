@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface PatientRepository extends CrudRepository<Patient,Integer> {
     Optional<Patient> findByGivenNameAndFamilyName(String givenName, String familyName);
+    Optional<Patient> findByFamilyName(String familyName);
 }

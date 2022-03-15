@@ -47,6 +47,13 @@ class PatientControllerTest {
     }
 
     @Test
+    void getPatientByFamilyNameTest() throws Exception {
+        String familyName = "Deribreux";
+        Mockito.when(patientService.getPatientByFamilyName(familyName)).thenReturn(TestData.getPatientOne());
+        mockMvc.perform(get("/patient/getByFamilyName").param("familyName",familyName)).andExpect(status().isOk());
+    }
+
+    @Test
     void addPatientJsonTest() throws Exception {
         //Given
         Patient patient = TestData.getPatientOne();

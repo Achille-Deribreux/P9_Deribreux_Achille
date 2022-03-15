@@ -31,8 +31,10 @@ public class PatientWebClientTest {
     private String BASE_URL_LOCALHOST_PATIENT;
 
     private final String GET_PATIENT_BY_ID_URL = "/getById";
+    private final String GET_PATIENT_BY_FAMILY_NAME_URL = "/getByFamilyName";
     private final String GET_ALL_PATIENTS_URL = "/getAll";
     private final String QUERY_PARAM_PATIENT_ID = "?id=";
+    private final String QUERY_PARAM_PATIENT_FAMILY_NAME = "?familyName=";
 
     @BeforeEach
     void setUp() {
@@ -53,6 +55,24 @@ public class PatientWebClientTest {
                 , HttpMethod.GET,null,new ParameterizedTypeReference<PatientDTO>() {}))
                 .thenReturn(new ResponseEntity<>(TestData.getOnePatientDTO(), HttpStatus.OK));
         result = patientWebClient.getPatientById(1);
+        //Then
+        Assertions.assertEquals(expected,result);
+    }
+
+    @Test
+    void getPatientByFamilyNameTest() {
+        //Given
+        String familyName = "Deribreux";
+        PatientDTO expected = TestData.getOnePatientDTO();
+        PatientDTO result;
+        //When
+        Mockito.when(restTemplate.exchange(
+                        BASE_URL_LOCALHOST_PATIENT+
+                                GET_PATIENT_BY_FAMILY_NAME_URL+
+                                QUERY_PARAM_PATIENT_FAMILY_NAME+familyName
+                        , HttpMethod.GET,null,new ParameterizedTypeReference<PatientDTO>() {}))
+                .thenReturn(new ResponseEntity<>(TestData.getOnePatientDTO(), HttpStatus.OK));
+        result = patientWebClient.getPatientByFamilyName(familyName);
         //Then
         Assertions.assertEquals(expected,result);
     }

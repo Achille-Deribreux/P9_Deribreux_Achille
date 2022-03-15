@@ -60,4 +60,15 @@ public class AssessmentController {
         logger.info("get request received at /assess/id, call the assessmentService to get the risks for patient {}",patId);
         return new ResponseEntity<>(assessmentService.getFullResponse(patId),HttpStatus.OK);
     }
+
+    /**
+     * This method answer to a post request at /assess/familyName and returns a string with the name, the age and the risk of a given patient
+     * @param familyName family name of the patient for which you want to have risk
+     * @return  string with the name, the age and the risk of a given patient
+     */
+    @PostMapping(value="/assess/familyName", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getPatientAssessmentByFamilyName(String familyName) throws ParseException {
+        logger.info("get request received at /assess/familyName, call the assessmentService to get the risks for patient {}",familyName);
+        return new ResponseEntity<>(assessmentService.getFullResponseByFamilyName(familyName),HttpStatus.OK);
+    }
 }
