@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://img.shields.io/badge/java-%23ED8B00.svg?&style=for-the-badge&logo=java&logoColor=white"/> * * *  <img src="https://img.shields.io/badge/spring%20-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white"/>  * * *  <img src="https://img.shields.io/badge/docker%20-%230db7ed.svg?&style=for-the-badge&logo=docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/java-%23ED8B00.svg?&style=for-the-badge&logo=java&logoColor=white"/> * * *  <img src="https://img.shields.io/badge/spring%20-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white"/>  * * *  <img src="https://img.shields.io/badge/docker%20-%230db7ed.svg?&style=for-the-badge&logo=docker&logoColor=white"/> * * * <img src="https://img.shields.io/badge/react-%23ED8B09.svg?&&color=blue&style=for-the-badge&logo=react&logoColor=white"/> * * *  <img src="https://img.shields.io/badge/MYSQL%20-%236DB33F.svg?&color=orange&style=for-the-badge&logo=mysql&logoColor=white"/> * * * <img src="https://img.shields.io/badge/mongodb%20-%236DB33F.svg?&color=green&style=for-the-badge&logo=mongodb&logoColor=white"/> 
 </p>
 <h1 align="center">
  OpenClassrooms Application Developer Java Project 9
@@ -36,9 +36,9 @@ Run project :
 </h3>
 
 <h5>1° In /patient, /notes and /assessment, run the command : </h5>
-```$ mvn package  ```
+``` $ mvn package  ```
 <h5>2° Run docker : </h5>
-```$ docker-compose up  ```
+``` $ docker-compose up  ```
 
 <br>
 
