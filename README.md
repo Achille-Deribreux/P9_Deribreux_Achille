@@ -36,8 +36,11 @@ Run project :
 </h3>
 
 <h5>1° In /patient, /notes and /assessment, run the command : </h5>
+                 
 ``` $ mvn package  ```
+                 
 <h5>2° Run docker : </h5>
+                 
 ``` $ docker-compose up  ```
 
 <br>
