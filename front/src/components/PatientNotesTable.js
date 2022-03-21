@@ -21,7 +21,8 @@ class PatientNotesTable extends React.Component {
     }
 
     getDate(d){
-        return new Date(d[0],d[1],d[2])
+        let date = new Date(d[0],d[1],d[2]);
+        return date.toLocaleDateString("fr")
     }
 
     getData() {

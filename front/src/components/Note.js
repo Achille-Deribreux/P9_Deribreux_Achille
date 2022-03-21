@@ -5,7 +5,8 @@ import React from "react";
 class Note extends React.Component{
 
     getDate(d){
-        return new Date(d[0],d[1],d[2])
+        let date = new Date(d[0],d[1],d[2]);
+        return date.toLocaleDateString("fr")
     }
 
     render() {
@@ -13,7 +14,10 @@ class Note extends React.Component{
         return(
             <Container className="mt-5">
                 <Paper className="p-4 m-2">
-                    <Row className="mt-3">
+                    <Row className="my-3">
+                        <Col xs={8}>
+
+                        </Col>
                         <Col>
                             <Link href={"/note?id="+note.id}>
                                 <button className="btn-lg btn-primary btn-circle"><i className="fas fa-eye" /></button>
