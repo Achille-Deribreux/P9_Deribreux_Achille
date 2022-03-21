@@ -4,6 +4,10 @@ import React from "react";
 
 class Note extends React.Component{
 
+    getDate(d){
+        return new Date(d[0],d[1],d[2])
+    }
+
     render() {
         const{note} = this.props;
         return(
@@ -21,7 +25,7 @@ class Note extends React.Component{
                             <p><b>Patient Id : </b> {note.patientId}</p>
                         </Col>
                         <Col>
-                            <p><b>Date : </b> {note.creationDateTime}</p>
+                            <p><b>Date : </b> {this.getDate(note.creationDateTime)}</p>
                         </Col>
                     </Row>
                     <Row>

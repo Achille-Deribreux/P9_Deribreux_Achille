@@ -20,6 +20,10 @@ class PatientNotesTable extends React.Component {
         return new URL(document.location).searchParams.get('id');
     }
 
+    getDate(d){
+        return new Date(d[0],d[1],d[2])
+    }
+
     getData() {
         fetch("http://localhost:8082/patHistory/getAllNotesByPatientId?patientId=" + this.getPatientId())
             .then(response => response.json())
@@ -44,7 +48,6 @@ class PatientNotesTable extends React.Component {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">Note Id</TableCell>
                                 <TableCell align="center">Patient Id</TableCell>
                                 <TableCell align="center">Date</TableCell>
                                 <TableCell align="center">Note</TableCell>
@@ -56,9 +59,8 @@ class PatientNotesTable extends React.Component {
                                 <TableRow
                                     key={note.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell align="center">{note.id}</TableCell>
                                     <TableCell align="center">{note.patientId}</TableCell>
-                                    <TableCell align="center">{note.creationDateTime}</TableCell>
+                                    <TableCell align="center">{this.getDate(note.creationDateTime)}</TableCell>
                                     <TableCell align="center">{note.comment}</TableCell>
                                     <TableCell align="center">
                                         <Link href={"/note?id="+note.id}>
