@@ -10,7 +10,7 @@ public class Note {
 
     private String id;
     private Integer patientId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime creationDateTime;
     private String comment;
 

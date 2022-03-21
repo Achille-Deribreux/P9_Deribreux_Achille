@@ -10,9 +10,6 @@ class Note extends React.Component{
             <Container className="mt-5">
                 <Paper className="p-4 m-2">
                     <Row className="mt-3">
-                        <Col xs={10}>
-                            <p><b>Note Id : </b> {note.id}</p>
-                        </Col>
                         <Col>
                             <Link href={"/note?id="+note.id}>
                                 <button className="btn-lg btn-primary btn-circle"><i className="fas fa-eye" /></button>

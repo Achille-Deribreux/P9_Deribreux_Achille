@@ -32,6 +32,13 @@ Mediscreen is an application that allows to detect a level of risk of diabetes i
 </ul>
 <br>
 <h3>
+ Structure
+</h3>
+<p align="center">
+ <img src="./structure_P9.png">
+</p>
+<br>
+<h3>
 Run project :
 </h3>
 
